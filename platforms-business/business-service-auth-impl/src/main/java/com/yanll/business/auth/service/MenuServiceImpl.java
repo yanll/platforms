@@ -1,5 +1,6 @@
 package com.yanll.business.auth.service;
 
+import com.github.pagehelper.PageRowBounds;
 import com.yanll.business.auth.dao.MenuBeanMapper;
 import com.yanll.business.auth.domain.MenuBean;
 import com.yanll.business.auth.domain.MenuBeanVO;
@@ -25,7 +26,8 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuBean, MenuBeanVO> imple
 
     @Override
     public List<MenuBeanVO> selectMenus() throws BizException {
-        List<MenuBean> list_ = menuBeanMapper.selectMenus();
+        PageRowBounds pageRowBounds = new PageRowBounds(1, 2);
+        List<MenuBean> list_ = menuBeanMapper.selectMenus(pageRowBounds);
         List<MenuBeanVO> list = toVOList(list_);
         return list;
     }

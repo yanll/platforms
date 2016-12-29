@@ -45,11 +45,11 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_permission_group" domainObjectName="PermissionGroup" selectByExampleQueryId="false"
+        <table tableName="m_permission_group" domainObjectName="PermissionGroupBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_group_operation_rel" domainObjectName="GroupOperationRel" selectByExampleQueryId="false"
+        <table tableName="m_group_operation_rel" domainObjectName="GroupOperationRelBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
@@ -61,7 +61,7 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_user_group_rel" domainObjectName="UserGroupRel" selectByExampleQueryId="false"
+        <table tableName="m_user_group_rel" domainObjectName="UserGroupRelBean" selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>

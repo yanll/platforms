@@ -4,6 +4,7 @@ import com.yanll.business.auth.domain.UserBean;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -12,6 +13,6 @@ public interface UserBeanMapper extends BaseMapper<UserBean> {
 
     public UserBean selectUser(@Param("username") String username, @Param("password") String password);
 
-    public List<UserBean> selectUsers(@Param("username") String username);
+    public List<UserBean> selectUsers(RowBounds rowBounds);
 
 }

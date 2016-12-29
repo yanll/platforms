@@ -7,6 +7,7 @@ import com.yanll.framework.core.service.mysql.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.exception.BizException;
+import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
 
     @Override
     public List<UserBeanVO> selectUsers(String username) throws BizException {
-        return toVOList(userBeanMapper.selectUsers(username));
+        return toVOList(userBeanMapper.selectUsers(new RowBounds(1, 2)));
     }
 
     @Override
