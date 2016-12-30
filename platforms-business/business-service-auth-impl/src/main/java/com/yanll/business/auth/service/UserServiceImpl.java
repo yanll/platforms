@@ -36,7 +36,9 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
 
     @Override
     public List<UserBeanVO> selectUsers(String username) throws BizException {
-        return toVOList(userBeanMapper.selectUsers(new RowBounds(1, 2)));
+        RowBounds rowBounds = new RowBounds(0, 2);
+        List<UserBean> list = userBeanMapper.selectUsers(rowBounds);
+        return toVOList(list);
     }
 
     @Override

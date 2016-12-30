@@ -4,6 +4,12 @@
     <typeAliases>
         <package name="com.yanll.business.auth.domain"/>
     </typeAliases>
+    <plugins>
+        <!--<plugin interceptor="com.github.pagehelper.PageInterceptor"/>-->
+        <plugin interceptor="com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect"/>
+        </plugin>
+    </plugins>
     <mappers>
         <mapper resource="dao/MenuBeanMapper.xml"/>
         <mapper resource="dao/UserBeanMapper.xml"/>

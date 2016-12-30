@@ -1,12 +1,14 @@
 package com.yanll.business.auth.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.yanll.business.auth.dao.OperationBeanMapper;
 import com.yanll.business.auth.domain.OperationBean;
 import com.yanll.business.auth.domain.OperationBeanVO;
 import com.yanll.framework.core.service.mysql.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.util.exception.BizException;
+import com.yanll.framework.util.jackson.UtilJackson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,12 @@ public class OperationServiceImpl extends BaseServiceImpl<OperationBean, Operati
 
     @Override
     public List<OperationBeanVO> selectOperations() throws BizException {
-        return toVOList(operationBeanMapper.selectOperations(new PageBounds(1, 2)));
+        PageBounds pageBounds = new PageBounds(0, 2);
+        List<OperationBean> list = operationBeanMapper.selectOperations(pageBounds);
+        PageList<OperationBean> list_ = (PageList<OperationBean>) list;
+        System.out.println(UtilJackson.toJSON(list_));
+        System.out.println(UtilJackson.toJSON(list_.getPaginator()));
+        return toVOList(list);
     }
 
     @Override
