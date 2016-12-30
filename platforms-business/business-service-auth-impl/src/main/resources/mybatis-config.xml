@@ -11,9 +11,9 @@
         <mapper resource="mapper/MenuBeanMapper.xml"/>
         <mapper resource="mapper/UserBeanMapper.xml"/>
         <mapper resource="mapper/OperationBeanMapper.xml"/>
-        <mapper resource="mapper/GroupOperationRelBeanMapper.xml"/>
-        <mapper resource="mapper/PermissionGroupBeanMapper.xml"/>
-        <mapper resource="mapper/UserGroupRelBeanMapper.xml"/>
-        <mapper resource="mapper/UserOperationRelBeanMapper.xml"/>
+        <!--<mapper resource="mapper/GroupOperationRelBeanMapper.xml"/>-->
+        <!--<mapper resource="mapper/PermissionGroupBeanMapper.xml"/>-->
+        <!--<mapper resource="mapper/UserGroupRelBeanMapper.xml"/>-->
+        <!--<mapper resource="mapper/UserOperationRelBeanMapper.xml"/>-->
     </mappers>
 </configuration>

@@ -1,0 +1,25 @@
+package com.yanll.console.auth.manager;
+
+import com.yanll.business.auth.domain.OperationBeanVO;
+import com.yanll.business.auth.service.IOperationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+/**
+ * Created by Administrator on 2016/12/7.
+ */
+@Component
+public class OperationManager {
+    private static final Logger logger = LoggerFactory.getLogger(OperationManager.class);
+    @Autowired
+    IOperationService operationService;
+
+
+    public List<OperationBeanVO> getOperations() {
+        return operationService.selectOperations();
+    }
+}
