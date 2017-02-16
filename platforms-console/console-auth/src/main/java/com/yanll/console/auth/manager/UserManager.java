@@ -2,7 +2,7 @@ package com.yanll.console.auth.manager;
 
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.business.auth.service.IUserService;
-import com.yanll.framework.core.service.poi.excel.ExcelImportHandler;
+import com.yanll.framework.core.service.importor.ExcelImportHandler;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.jackson.UtilJackson;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class UserManager {
     ExcelImportHandler<UserBeanVO> excelImportPreHandler;
 
     public void imp(String filename, InputStream is) {
-        List<UserBeanVO> pre_list = excelImportPreHandler.handle(filename, is, (error_index, values) -> {
+        List<UserBeanVO> pre_list = excelImportPreHandler.handle(null, filename, is, (error_index, values) -> {
             UserBeanVO vo = new UserBeanVO();
             vo.setId(Long.parseLong(values[0]));
             vo.setUsername(values[1]);

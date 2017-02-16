@@ -39,7 +39,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <greeting>Welcome</greeting>
+                    <!--<greeting>Welcome</greeting>-->
                 </configuration>
             </plugin>
         </plugins>
