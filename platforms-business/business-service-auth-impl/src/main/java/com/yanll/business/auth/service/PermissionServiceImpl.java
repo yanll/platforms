@@ -2,9 +2,9 @@ package com.yanll.business.auth.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
-import com.yanll.business.auth.dao.OperationBeanMapper;
-import com.yanll.business.auth.domain.OperationBean;
-import com.yanll.business.auth.domain.OperationBeanVO;
+import com.yanll.business.auth.dao.PermissionBeanMapper;
+import com.yanll.business.auth.domain.PermissionBean;
+import com.yanll.business.auth.domain.PermissionBeanVO;
 import com.yanll.framework.data.mysql.service.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.util.exception.BizException;
@@ -20,34 +20,34 @@ import java.util.List;
  * Created by Administrator on 2016/11/17.
  */
 @Service
-public class OperationServiceImpl extends BaseServiceImpl<OperationBean, OperationBeanVO> implements IOperationService {
+public class PermissionServiceImpl extends BaseServiceImpl<PermissionBean, PermissionBeanVO> implements IPermissionService {
 
-    private static final Logger logger = LoggerFactory.getLogger(OperationServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(PermissionServiceImpl.class);
     @Autowired
-    OperationBeanMapper operationBeanMapper;
+    PermissionBeanMapper permissionBeanMapper;
 
     @Override
-    public List<OperationBeanVO> selectOperations() throws BizException {
+    public List<PermissionBeanVO> selectPermissions() throws BizException {
         PageBounds pageBounds = new PageBounds(0, 2);
-        List<OperationBean> list = operationBeanMapper.selectOperations(pageBounds);
-        PageList<OperationBean> list_ = (PageList<OperationBean>) list;
+        List<PermissionBean> list = permissionBeanMapper.selectPermissions(pageBounds);
+        PageList<PermissionBean> list_ = (PageList<PermissionBean>) list;
         System.out.println(UtilJackson.toJSON(list_));
         System.out.println(UtilJackson.toJSON(list_.getPaginator()));
         return toVOList(list);
     }
 
     @Override
-    public OperationBean getDataEntity() {
-        return new OperationBean();
+    public PermissionBean getDataEntity() {
+        return new PermissionBean();
     }
 
     @Override
-    public OperationBeanVO getVO() {
-        return new OperationBeanVO();
+    public PermissionBeanVO getVO() {
+        return new PermissionBeanVO();
     }
 
     @Override
-    public BaseMapper<OperationBean> getMapper() {
-        return operationBeanMapper;
+    public BaseMapper<PermissionBean> getMapper() {
+        return permissionBeanMapper;
     }
 }

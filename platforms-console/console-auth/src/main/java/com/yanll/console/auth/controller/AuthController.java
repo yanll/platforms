@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @ConsolePermission(controlled = false)
 @RestController
-@RequestMapping(value = "/console/auth")
+@RequestMapping(value = "/auth")
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
     @Autowired

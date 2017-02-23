@@ -1,7 +1,7 @@
 package com.yanll.console.auth.manager;
 
-import com.yanll.business.auth.domain.OperationBeanVO;
-import com.yanll.business.auth.service.IOperationService;
+import com.yanll.business.auth.domain.PermissionBeanVO;
+import com.yanll.business.auth.service.IPermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import java.util.List;
 public class OperationManager {
     private static final Logger logger = LoggerFactory.getLogger(OperationManager.class);
     @Autowired
-    IOperationService operationService;
+    IPermissionService permissionService;
 
 
-    public List<OperationBeanVO> getOperations() {
-        return operationService.selectOperations();
+    public List<PermissionBeanVO> getOperations() {
+        return permissionService.selectPermissions();
     }
 }

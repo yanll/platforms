@@ -1,7 +1,7 @@
 package com.yanll.console;
 
-import com.yanll.business.auth.dao.OperationBeanMapper;
-import com.yanll.business.auth.domain.OperationBean;
+import com.yanll.business.auth.dao.PermissionBeanMapper;
+import com.yanll.business.auth.domain.PermissionBean;
 import com.yanll.business.auth.service.IAuthService;
 import com.yanll.console.auth.AuthApplication;
 import com.yanll.framework.auth.permission.annotation.ConsolePermission;
@@ -28,7 +28,7 @@ import java.util.Set;
 /**
  * Created by Administrator on 2016/11/18.
  */
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @SpringBootTest(classes = AuthApplication.class)
@@ -40,7 +40,7 @@ public class AuthTest {
     @Autowired
     private IAuthService authService;
     @Autowired
-    private OperationBeanMapper operationBeanMapper;
+    private PermissionBeanMapper operationBeanMapper;
 
     @Before
     public void setUp() {
@@ -89,10 +89,10 @@ public class AuthTest {
                     break;
                 }
                 System.out.println(key.getName() + ":[" + url + ":" + method + "]");
-                OperationBean ope = new OperationBean();
+                PermissionBean ope = new PermissionBean();
                 ope.setUrl(url);
                 ope.setMethod(method);
-                ope.setOpeName(key.getName());
+                ope.setPermissionName(key.getName());
                 operationBeanMapper.insertSelective(ope);
             }
         }

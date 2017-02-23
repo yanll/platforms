@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by YANLL on 2016/08/29.
  */
 @RestController
-@RequestMapping(value = "/console/operation")
-public class OperationController {
-    private static final Logger logger = LoggerFactory.getLogger(OperationController.class);
+@RequestMapping(value = "/permission")
+public class PermissionController {
+    private static final Logger logger = LoggerFactory.getLogger(PermissionController.class);
     @Autowired
     OperationManager operationManager;
 

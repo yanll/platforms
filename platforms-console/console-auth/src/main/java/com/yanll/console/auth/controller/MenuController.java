@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by YANLL on 2016/08/29.
  */
 @RestController
-@RequestMapping(value = "/console/menu")
+@RequestMapping(value = "/menu")
 public class MenuController {
     private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired

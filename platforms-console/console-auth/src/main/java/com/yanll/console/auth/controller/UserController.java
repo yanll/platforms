@@ -21,7 +21,7 @@ import java.io.InputStream;
  * Created by YANLL on 2016/08/29.
  */
 @RestController
-@RequestMapping(value = "/console/user")
+@RequestMapping(value = "/user")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
