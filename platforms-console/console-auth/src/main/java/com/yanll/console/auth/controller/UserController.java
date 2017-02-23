@@ -8,10 +8,8 @@ import com.yanll.framework.web.result.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -36,13 +34,8 @@ public class UserController {
 
     @RequestMapping(value = "/imp", method = RequestMethod.POST, name = "导入用户")
     @ResponseBody
-    public JSON imp() {
-        try {
-            InputStream is = new FileInputStream("D:/u.xlsx");
-            userManager.imp("u.xlsx", is);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public JSON imp(@RequestParam("file") MultipartFile file) {
+        userManager.imp(file);
         return new JSON(BizCode.OK.getValue());
     }
 

@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -25,7 +27,16 @@ public class UserManager {
     @Autowired
     ExcelImportHandler<UserBeanVO> excelImportPreHandler;
 
-    public void imp(String filename, InputStream is) {
+    public void imp(MultipartFile file) {
+        if (file == null || file.isEmpty()) throw new BizException("文件为空！");
+        String filename = file.getOriginalFilename();
+        InputStream is = null;
+        try {
+            is = file.getInputStream();
+        } catch (IOException e) {
+            logger.error("用户导入-文件流读取失败！");
+            throw new BizException("文件流读取失败！");
+        }
         List<UserBeanVO> pre_list = excelImportPreHandler.handle(null, filename, is, (error_index, values) -> {
             UserBeanVO vo = new UserBeanVO();
             vo.setId(Long.parseLong(values[0]));

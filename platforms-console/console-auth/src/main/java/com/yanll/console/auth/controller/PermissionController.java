@@ -23,10 +23,10 @@ public class PermissionController {
     @Autowired
     OperationManager operationManager;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询操作列表")
+    @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询权限列表")
     @ResponseBody
     public JSON list() {
-        return new JSON(BizCode.OK.getValue(), operationManager.getOperations());
+        return new JSON(BizCode.OK.getValue(), operationManager.getPermissions());
     }
 
 }

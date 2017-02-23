@@ -19,7 +19,7 @@ public class OperationManager {
     IPermissionService permissionService;
 
 
-    public List<PermissionBeanVO> getOperations() {
+    public List<PermissionBeanVO> getPermissions() {
         return permissionService.selectPermissions();
     }
 }
