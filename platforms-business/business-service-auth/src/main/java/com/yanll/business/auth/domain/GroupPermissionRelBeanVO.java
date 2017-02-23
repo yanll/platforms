@@ -1,6 +1,5 @@
 package com.yanll.business.auth.domain;
 
-import com.yanll.framework.data.domain.DataEntity;
 import com.yanll.framework.data.domain.VOEntity;
 
 /*
