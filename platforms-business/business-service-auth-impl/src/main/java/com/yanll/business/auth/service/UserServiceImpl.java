@@ -3,7 +3,7 @@ package com.yanll.business.auth.service;
 import com.yanll.business.auth.dao.UserBeanMapper;
 import com.yanll.business.auth.domain.UserBean;
 import com.yanll.business.auth.domain.UserBeanVO;
-import com.yanll.framework.core.service.mysql.BaseServiceImpl;
+import com.yanll.framework.data.mysql.service.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.exception.BizException;

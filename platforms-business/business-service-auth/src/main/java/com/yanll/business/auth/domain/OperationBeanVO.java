@@ -1,6 +1,6 @@
 package com.yanll.business.auth.domain;
 
-import com.yanll.framework.data.mysql.domain.VOEntity;
+import com.yanll.framework.data.domain.VOEntity;
 
 /*
 * 当前文件为MybatisGenerator自动生成的VO，请手动剪切到*-service项目。

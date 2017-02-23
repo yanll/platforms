@@ -4,7 +4,7 @@ import com.yanll.business.auth.dao.OperationBeanMapper;
 import com.yanll.business.auth.domain.OperationBean;
 import com.yanll.business.auth.service.IAuthService;
 import com.yanll.console.auth.AuthApplication;
-import com.yanll.framework.web.annotation.Permission;
+import com.yanll.framework.auth.permission.annotation.ConsolePermission;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -72,8 +72,8 @@ public class AuthTest {
                 Class controller = value.getBeanType();
                 if (controller.getName().equals("org.springframework.boot.autoconfigure.web.BasicErrorController"))
                     continue;
-                Permission cp = (Permission) controller.getAnnotation(Permission.class);
-                Permission mp = (Permission) value.getMethodAnnotation(Permission.class);
+                ConsolePermission cp = (ConsolePermission) controller.getAnnotation(ConsolePermission.class);
+                ConsolePermission mp = (ConsolePermission) value.getMethodAnnotation(ConsolePermission.class);
                 if (null != cp && !cp.controlled()) continue;
                 if (null != mp && !mp.controlled()) continue;
                 Set<String> patterns = key.getPatternsCondition().getPatterns();

@@ -1,6 +1,6 @@
 package com.yanll.business.auth.domain;
 
-import com.yanll.framework.data.mysql.domain.DataEntity;
+import com.yanll.framework.data.domain.DataEntity;
 
 /*
 * 当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）

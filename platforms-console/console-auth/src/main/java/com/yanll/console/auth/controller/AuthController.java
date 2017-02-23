@@ -4,8 +4,8 @@ package com.yanll.console.auth.controller;
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.business.auth.service.IAuthService;
 import com.yanll.business.auth.service.IUserService;
+import com.yanll.framework.auth.permission.annotation.ConsolePermission;
 import com.yanll.framework.util.exception.BizCode;
-import com.yanll.framework.web.annotation.Permission;
 import com.yanll.framework.web.result.JSON;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by YANLL on 2016/08/29.
  */
-@Permission(controlled = false)
+@ConsolePermission(controlled = false)
 @RestController
 @RequestMapping(value = "/console/auth")
 public class AuthController {

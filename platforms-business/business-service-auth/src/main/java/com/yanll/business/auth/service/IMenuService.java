@@ -1,7 +1,7 @@
 package com.yanll.business.auth.service;
 
 import com.yanll.business.auth.domain.MenuBeanVO;
-import com.yanll.framework.core.service.mysql.BaseService;
+import com.yanll.framework.data.mysql.service.BaseService;
 import com.yanll.framework.util.exception.BizException;
 
 import java.util.List;
