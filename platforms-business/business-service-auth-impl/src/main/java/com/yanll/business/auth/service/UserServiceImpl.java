@@ -1,5 +1,6 @@
 package com.yanll.business.auth.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.yanll.business.auth.dao.UserBeanMapper;
 import com.yanll.business.auth.domain.UserBean;
 import com.yanll.business.auth.domain.UserBeanVO;
@@ -38,6 +39,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
     public List<UserBeanVO> selectUsers(String username) throws BizException {
         RowBounds rowBounds = new RowBounds(0, 100);
         List<UserBean> list = userBeanMapper.selectUsers(rowBounds);
+        //PageList
         return toVOList(list);
     }
 
