@@ -28,7 +28,7 @@ public class PermissionServiceImpl extends BaseServiceImpl<PermissionBean, Permi
 
     @Override
     public List<PermissionBeanVO> selectPermissions() throws BizException {
-        PageBounds pageBounds = new PageBounds(0, 2);
+        PageBounds pageBounds = new PageBounds(0, 100);
         List<PermissionBean> list = permissionBeanMapper.selectPermissions(pageBounds);
         PageList<PermissionBean> list_ = (PageList<PermissionBean>) list;
         System.out.println(UtilJackson.toJSON(list_));

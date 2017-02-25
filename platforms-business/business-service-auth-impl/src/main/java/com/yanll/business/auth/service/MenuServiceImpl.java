@@ -28,12 +28,12 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuBean, MenuBeanVO> imple
 
     @Override
     public List<MenuBeanVO> selectMenus() throws BizException {
-        PageRowBounds pageRowBounds = new PageRowBounds(0, 2);
+        PageRowBounds pageRowBounds = new PageRowBounds(0, 100);
         List<MenuBean> list_ = menuBeanMapper.selectMenus(pageRowBounds);
-        Page<MenuBean> page = (Page) list_;
+        //Page<MenuBean> page = (Page) list_;
         List<MenuBeanVO> list = toVOList(list_);
         System.out.println(UtilJackson.toJSON(pageRowBounds));
-        System.out.println(UtilJackson.toJSON(page.getTotal()));
+        //System.out.println(UtilJackson.toJSON(page.getTotal()));
         return list;
     }
 
