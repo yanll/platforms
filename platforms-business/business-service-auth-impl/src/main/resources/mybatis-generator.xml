@@ -13,8 +13,8 @@
         </commentGenerator>
 
         <!--数据库连接信息-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="root" password="root"
-                        connectionURL="jdbc:mysql://192.168.88.128:3306/auth_center?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" userId="${mysql.username}" password="${mysql.password}"
+                        connectionURL="${mysql.server}/auth_center?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;allowMultiQueries=true">
         </jdbcConnection>
 
         <!--Java Bean生成的路径以及package命名空间定义-->
@@ -49,7 +49,8 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_group_permission_rel" domainObjectName="GroupPermissionRelBean" selectByExampleQueryId="false"
+        <table tableName="m_group_permission_rel" domainObjectName="GroupPermissionRelBean"
+               selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>

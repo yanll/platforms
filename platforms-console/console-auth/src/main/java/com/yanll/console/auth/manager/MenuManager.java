@@ -1,8 +1,10 @@
 package com.yanll.console.auth.manager;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.yanll.business.auth.domain.MenuBeanVO;
 import com.yanll.business.auth.service.IMenuService;
 import com.yanll.framework.util.exception.BizException;
+import com.yanll.framework.util.page.PaginateWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,7 @@ public class MenuManager {
 
     }
 
-    public List<MenuBeanVO> getMenus() {
-        return menuService.selectMenus();
+    public PaginateWrapper<List<MenuBeanVO>> getMenus(PageBounds pageBounds) {
+        return menuService.selectMenus(pageBounds);
     }
 }

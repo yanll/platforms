@@ -22,4 +22,29 @@
     </modules>
 
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profiles.active>dev</profiles.active>
+                <mysql.server>jdbc:mysql://172.21.1.205:3306</mysql.server>
+                <mysql.username>h2finance</mysql.username>
+                <mysql.password>h2financepay</mysql.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+                <mysql.server>jdbc:mysql://192.168.88.128:3306</mysql.server>
+                <mysql.username>root</mysql.username>
+                <mysql.password>root</mysql.password>
+            </properties>
+        </profile>
+    </profiles>
+
+
 </project>
