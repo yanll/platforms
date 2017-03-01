@@ -7,7 +7,6 @@ import com.yanll.console.auth.manager.MenuManager;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.page.PaginateWrapper;
 import com.yanll.framework.util.page.PaginationUtil;
-import com.yanll.framework.web.criteria.CommonCriteria;
 import com.yanll.framework.web.result.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
