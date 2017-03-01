@@ -28,7 +28,7 @@ public class MenuController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询菜单列表")
     @ResponseBody
-    public JSON<PaginateWrapper<List<MenuBeanVO>>> menus(Integer page, Integer limit) {
+    public JSON<PaginateWrapper<List<MenuBeanVO>>> list(Integer page, Integer limit) {
         PageBounds pageBounds = PaginationUtil.toPageBounds(page, limit, true);
         return new JSON(BizCode.OK.getValue(), menuManager.getMenus(pageBounds));
     }

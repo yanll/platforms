@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/12/7.
+ * Created by YANLL on 2016/12/7.
  */
 @Component
-public class OperationManager {
-    private static final Logger logger = LoggerFactory.getLogger(OperationManager.class);
+public class PermissionManager {
+    private static final Logger logger = LoggerFactory.getLogger(PermissionManager.class);
     @Autowired
     IPermissionService permissionService;
 

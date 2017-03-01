@@ -18,11 +18,12 @@
         <mapper resource="dao/MenuBeanMapper.xml"/>
         <mapper resource="dao/UserBeanMapper.xml"/>
         <mapper resource="dao/PermissionBeanMapper.xml"/>
+        <mapper resource="dao/PermissionGroupBeanMapper.xml"/>
         <mapper resource="mapper/MenuBeanMapper.xml"/>
         <mapper resource="mapper/UserBeanMapper.xml"/>
         <mapper resource="mapper/PermissionBeanMapper.xml"/>
+        <mapper resource="mapper/PermissionGroupBeanMapper.xml"/>
         <!--<mapper resource="mapper/GroupPermissionRelBeanMapper.xml"/>-->
-        <!--<mapper resource="mapper/PermissionGroupBeanMapper.xml"/>-->
         <!--<mapper resource="mapper/UserGroupRelBeanMapper.xml"/>-->
         <!--<mapper resource="mapper/UserPermissionRelBeanMapper.xml"/>-->
     </mappers>

@@ -7,7 +7,7 @@ import com.yanll.framework.util.exception.BizException;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/11/17.
+ * Created by YANLL on 2016/11/17.
  */
 public interface IUserService extends BaseService<UserBeanVO> {
     public UserBeanVO selectUser(String username, String password) throws BizException;

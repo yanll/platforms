@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/12/7.
+ * Created by YANLL on 2016/12/7.
  */
 @Component
 public class MenuManager {

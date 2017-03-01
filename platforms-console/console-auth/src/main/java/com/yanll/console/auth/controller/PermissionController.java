@@ -1,7 +1,7 @@
 package com.yanll.console.auth.controller;
 
 
-import com.yanll.console.auth.manager.OperationManager;
+import com.yanll.console.auth.manager.PermissionManager;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.web.result.JSON;
 import org.slf4j.Logger;
@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class PermissionController {
     private static final Logger logger = LoggerFactory.getLogger(PermissionController.class);
     @Autowired
-    OperationManager operationManager;
+    PermissionManager permissionManager;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询权限列表")
     @ResponseBody
     public JSON list() {
-        return new JSON(BizCode.OK.getValue(), operationManager.getPermissions());
+        return new JSON(BizCode.OK.getValue(), permissionManager.getPermissions());
     }
 
 }
