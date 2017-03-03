@@ -49,7 +49,7 @@
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">
         </table>
-        <table tableName="m_group_permission_rel" domainObjectName="GroupPermissionRelBean"
+        <table tableName="m_permission_group_rel" domainObjectName="PermissionGroupRelBean"
                selectByExampleQueryId="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableCountByExample="false">

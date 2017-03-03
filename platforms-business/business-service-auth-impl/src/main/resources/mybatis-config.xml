@@ -23,7 +23,7 @@
         <mapper resource="mapper/UserBeanMapper.xml"/>
         <mapper resource="mapper/PermissionBeanMapper.xml"/>
         <mapper resource="mapper/PermissionGroupBeanMapper.xml"/>
-        <!--<mapper resource="mapper/GroupPermissionRelBeanMapper.xml"/>-->
+        <!--<mapper resource="mapper/PermissionGroupRelBeanMapper.xml"/>-->
         <!--<mapper resource="mapper/UserGroupRelBeanMapper.xml"/>-->
         <!--<mapper resource="mapper/UserPermissionRelBeanMapper.xml"/>-->
     </mappers>

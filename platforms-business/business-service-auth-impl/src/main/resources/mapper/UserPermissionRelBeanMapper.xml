@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yanll.business.auth.dao.UserPermissionRelBeanMapper">
   <!--当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）-->
-  <cache-ref namespace="com.yanll.business.auth.dao.UserPermissionRelBeanMapper"/>
+  <cache-ref namespace="com.yanll.business.auth.dao.UserPermissionRelBeanMapper" />
   <resultMap id="BaseResultMap" type="com.yanll.business.auth.domain.UserPermissionRelBean">
     <!--
       WARNING - @mbg.generated
@@ -103,6 +103,16 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <delete id="deleteByPrimaryKeys">
-    delete from m_user_permission_rel where id IN <foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
+    delete from m_user_permission_rel where id IN <foreach close=")" collection="ids" item="id" open="(" separator=",">#{id}</foreach>
+  </delete>
+  <!--当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）-->
+  <cache-ref namespace="com.yanll.business.auth.dao.UserPermissionRelBeanMapper" />
+  <delete id="deleteByPrimaryKeys">
+    delete from m_user_permission_rel where id IN <foreach close=")" collection="ids" item="id" open="(" separator=",">#{id}</foreach>
+  </delete>
+  <!--当前文件为MybatisGenerator自动生成，重新生成时会被覆盖，请勿修改！（表结构变化时请重新生成）-->
+  <cache-ref namespace="com.yanll.business.auth.dao.UserPermissionRelBeanMapper" />
+  <delete id="deleteByPrimaryKeys">
+    delete from m_user_permission_rel where id IN <foreach close=")" collection="ids" item="id" open="(" separator=",">#{id}</foreach>
   </delete>
 </mapper>

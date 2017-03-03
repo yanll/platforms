@@ -11,10 +11,7 @@ import com.yanll.framework.web.result.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,6 +32,33 @@ public class PermissionGroupController {
     public JSON<PaginateWrapper<List<PermissionGroupBeanVO>>> list(Integer page, Integer limit) {
         PageBounds pageBounds = PaginationUtil.toPageBounds(page, limit, true);
         return new JSON(BizCode.OK.getValue(), permissionGroupManager.getPermissionGroups(pageBounds));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, name = "权限组详情")
+    @ResponseBody
+    public JSON<PermissionGroupBeanVO> update(@PathVariable Long id) {
+        return new JSON(permissionGroupManager.detail(id));
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, name = "删除权限组")
+    @ResponseBody
+    public JSON delete(@PathVariable Long id) {
+        permissionGroupManager.delete(id);
+        return new JSON(BizCode.OK.getValue());
+    }
+
+    @RequestMapping(method = RequestMethod.POST, name = "保存权限组")
+    @ResponseBody
+    public JSON save(@RequestBody PermissionGroupBeanVO permissionGroupBeanVO) {
+        permissionGroupManager.save(permissionGroupBeanVO);
+        return new JSON(BizCode.OK.getValue());
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, name = "更新权限组")
+    @ResponseBody
+    public JSON update(@RequestBody PermissionGroupBeanVO permissionGroupBeanVO) {
+        permissionGroupManager.update(permissionGroupBeanVO);
+        return new JSON(BizCode.OK.getValue());
     }
 
 }
