@@ -2,6 +2,7 @@ package com.yanll.console.auth.manager;
 
 import com.yanll.business.auth.domain.PermissionBeanVO;
 import com.yanll.business.auth.service.IPermissionService;
+import com.yanll.framework.util.enums.IEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,6 @@ public class PermissionManager {
 
 
     public List<PermissionBeanVO> getPermissions() {
-        return permissionService.selectPermissions();
+        return permissionService.selectPermissions(IEnum.SYSTEM_PORTAL.AUTH_CONSOLE.getValue());
     }
 }

@@ -5,11 +5,12 @@ import com.github.pagehelper.PageRowBounds;
 import com.yanll.business.auth.domain.MenuBean;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
 @Mapper
 public interface MenuBeanMapper extends BaseMapper<MenuBean> {
-    public List<MenuBean> selectMenus(PageBounds pageBounds);
+    public List<MenuBean> selectMenus(@Param("portal_id") Integer portal_id, PageBounds pageBounds);
 }

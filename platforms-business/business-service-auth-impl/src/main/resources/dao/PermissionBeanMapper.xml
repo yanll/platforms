@@ -3,6 +3,10 @@
 <mapper namespace="com.yanll.business.auth.dao.PermissionBeanMapper">
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
     <select id="selectPermissions" resultMap="BaseResultMap">
-        select * from m_permission
+        select * from m_permission where portal_id = #{portal_id} and enabled = 1
+    </select>
+    <select id="selectGroupPermissions" resultMap="BaseResultMap">
+        select a.* from m_permission a where a.enabled = 1 and a.id in (select b.permission_id from
+        m_permission_group_rel b where b.group_id = #{group_id})
     </select>
 </mapper>

@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface IMenuService extends BaseService<MenuBeanVO> {
 
-    public PaginateWrapper<List<MenuBeanVO>> selectMenus(PageBounds pageBounds) throws BizException;
+    public PaginateWrapper<List<MenuBeanVO>> selectMenus(Integer portal_id, PageBounds pageBounds) throws BizException;
 
 }

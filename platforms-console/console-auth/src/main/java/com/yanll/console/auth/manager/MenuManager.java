@@ -3,6 +3,7 @@ package com.yanll.console.auth.manager;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.yanll.business.auth.domain.MenuBeanVO;
 import com.yanll.business.auth.service.IMenuService;
+import com.yanll.framework.util.enums.IEnum;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.page.PaginateWrapper;
 import org.slf4j.Logger;
@@ -30,6 +31,6 @@ public class MenuManager {
     }
 
     public PaginateWrapper<List<MenuBeanVO>> getMenus(PageBounds pageBounds) {
-        return menuService.selectMenus(pageBounds);
+        return menuService.selectMenus(IEnum.SYSTEM_PORTAL.AUTH_CONSOLE.getValue(), pageBounds);
     }
 }

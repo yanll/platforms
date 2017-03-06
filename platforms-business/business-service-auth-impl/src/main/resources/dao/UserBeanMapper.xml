@@ -3,7 +3,7 @@
 <mapper namespace="com.yanll.business.auth.dao.UserBeanMapper">
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
     <select id="selectUser" resultType="UserBean">
-        select id, username, nickname from m_user where username = #{username} and password = #{password} and enabled != 0
+        select id, username, nickname from m_user where username = #{username} and password = #{password} and enabled = 1
     </select>
     <select id="selectUsers" resultType="UserBean">
         select * from m_user

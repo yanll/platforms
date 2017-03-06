@@ -1,8 +1,11 @@
 package com.yanll.console.auth.manager;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.yanll.business.auth.domain.PermissionBeanVO;
 import com.yanll.business.auth.domain.PermissionGroupBeanVO;
 import com.yanll.business.auth.service.IPermissionGroupService;
+import com.yanll.business.auth.service.IPermissionService;
+import com.yanll.framework.util.enums.IEnum;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.page.PaginateWrapper;
 import org.slf4j.Logger;
@@ -20,10 +23,16 @@ public class PermissionGroupManager {
     private static final Logger logger = LoggerFactory.getLogger(PermissionGroupManager.class);
     @Autowired
     IPermissionGroupService permissionGroupService;
+    @Autowired
+    IPermissionService permissionService;
 
 
     public PaginateWrapper<List<PermissionGroupBeanVO>> getPermissionGroups(PageBounds pageBounds) {
-        return permissionGroupService.selectPermissionGroups(pageBounds);
+        return permissionGroupService.selectPermissionGroups(IEnum.SYSTEM_PORTAL.AUTH_CONSOLE.getValue(), pageBounds);
+    }
+
+    public PaginateWrapper<List<PermissionBeanVO>> getPermissions(Long group_id, PageBounds pageBounds) {
+        return permissionService.selectPermissions(group_id, pageBounds);
     }
 
     public PermissionGroupBeanVO detail(Long id) {

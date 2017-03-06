@@ -5,10 +5,11 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.yanll.business.auth.dao.PermissionBeanMapper;
 import com.yanll.business.auth.domain.PermissionBean;
 import com.yanll.business.auth.domain.PermissionBeanVO;
-import com.yanll.framework.data.mysql.service.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
+import com.yanll.framework.data.mysql.service.BaseServiceImpl;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.jackson.UtilJackson;
+import com.yanll.framework.util.page.PaginateWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,21 @@ public class PermissionServiceImpl extends BaseServiceImpl<PermissionBean, Permi
     PermissionBeanMapper permissionBeanMapper;
 
     @Override
-    public List<PermissionBeanVO> selectPermissions() throws BizException {
+    public List<PermissionBeanVO> selectPermissions(Integer portal_id) throws BizException {
         PageBounds pageBounds = new PageBounds(0, 100);
-        List<PermissionBean> list = permissionBeanMapper.selectPermissions(pageBounds);
+        List<PermissionBean> list = permissionBeanMapper.selectPermissions(portal_id, pageBounds);
         PageList<PermissionBean> list_ = (PageList<PermissionBean>) list;
         System.out.println(UtilJackson.toJSON(list_));
         System.out.println(UtilJackson.toJSON(list_.getPaginator()));
         return toVOList(list);
+    }
+
+
+    @Override
+    public PaginateWrapper<List<PermissionBeanVO>> selectPermissions(Long group_id, PageBounds pageBounds) {
+        List<PermissionBean> list_ = permissionBeanMapper.selectGroupPermissions(group_id, pageBounds);
+        PaginateWrapper<List<PermissionBeanVO>> list = toPaginateWrapper(list_, pageBounds);
+        return list;
     }
 
     @Override

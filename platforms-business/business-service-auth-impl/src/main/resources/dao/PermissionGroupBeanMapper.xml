@@ -3,6 +3,6 @@
 <mapper namespace="com.yanll.business.auth.dao.PermissionGroupBeanMapper">
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
     <select id="selectPermissionGroups" resultMap="BaseResultMap">
-        select * from m_permission_group
+        select * from m_permission_group where portal_id = #{portal_id} and enabled = 1
     </select>
 </mapper>

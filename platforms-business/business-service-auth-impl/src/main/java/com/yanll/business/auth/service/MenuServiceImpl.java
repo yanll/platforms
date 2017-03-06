@@ -26,8 +26,8 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuBean, MenuBeanVO> imple
     MenuBeanMapper menuBeanMapper;
 
     @Override
-    public PaginateWrapper<List<MenuBeanVO>> selectMenus(PageBounds pageBounds) throws BizException {
-        List<MenuBean> list_ = menuBeanMapper.selectMenus(pageBounds);
+    public PaginateWrapper<List<MenuBeanVO>> selectMenus(Integer portal_id, PageBounds pageBounds) throws BizException {
+        List<MenuBean> list_ = menuBeanMapper.selectMenus(portal_id, pageBounds);
         PaginateWrapper<List<MenuBeanVO>> list = toPaginateWrapper(list_, pageBounds);
         return list;
     }

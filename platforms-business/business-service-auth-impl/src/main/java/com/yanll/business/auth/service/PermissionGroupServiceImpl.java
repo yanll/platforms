@@ -27,8 +27,8 @@ public class PermissionGroupServiceImpl extends BaseServiceImpl<PermissionGroupB
 
 
     @Override
-    public PaginateWrapper<List<PermissionGroupBeanVO>> selectPermissionGroups(PageBounds pageBounds) throws BizException {
-        List<PermissionGroupBean> list_ = permissionGroupBeanMapper.selectPermissionGroups(pageBounds);
+    public PaginateWrapper<List<PermissionGroupBeanVO>> selectPermissionGroups(Integer portal_id, PageBounds pageBounds) throws BizException {
+        List<PermissionGroupBean> list_ = permissionGroupBeanMapper.selectPermissionGroups(portal_id, pageBounds);
         PaginateWrapper<List<PermissionGroupBeanVO>> list = toPaginateWrapper(list_, pageBounds);
         return list;
     }

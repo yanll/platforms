@@ -3,6 +3,6 @@
 <mapper namespace="com.yanll.business.auth.dao.MenuBeanMapper">
     <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
     <select id="selectMenus" resultMap="BaseResultMap">
-        select * from m_menu
+        select * from m_menu where portal_id = #{portal_id} and enabled = 1
     </select>
 </mapper>
