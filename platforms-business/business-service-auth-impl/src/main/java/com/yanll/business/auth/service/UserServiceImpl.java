@@ -36,7 +36,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
     }
 
     @Override
-    public List<UserBeanVO> selectUsers(String username) throws BizException {
+    public List<UserBeanVO> selectUsers(String username) {
         RowBounds rowBounds = new RowBounds(0, 100);
         List<UserBean> list = userBeanMapper.selectUsers(rowBounds);
         //PageList
@@ -44,7 +44,7 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
     }
 
     @Override
-    public Integer batchInsertFromExcel(List<UserBeanVO> list) throws BizException {
+    public Integer batchInsertFromExcel(List<UserBeanVO> list) {
         List<UserBean> rs = toDOList(list);
         return userBeanMapper.batchInsert(rs);
     }

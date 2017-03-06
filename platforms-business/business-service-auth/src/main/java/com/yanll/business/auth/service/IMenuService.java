@@ -7,6 +7,7 @@ import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.page.PaginateWrapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -14,5 +15,7 @@ import java.util.List;
 public interface IMenuService extends BaseService<MenuBeanVO> {
 
     public PaginateWrapper<List<MenuBeanVO>> selectMenus(Integer portal_id, PageBounds pageBounds) throws BizException;
+
+    public List<Map<String, Object>> selectMapTreeMenus() throws BizException;
 
 }

@@ -28,7 +28,7 @@ public class UserManager {
     ExcelImportHandler<UserBeanVO> excelImportPreHandler;
 
     public void imp(MultipartFile file) {
-        if (file == null || file.isEmpty()) throw new BizException("文件为空！");
+        if (file == null || file.isEmpty()) throw new BizException("文件不能为空！");
         String filename = file.getOriginalFilename();
         InputStream is = null;
         try {
@@ -54,7 +54,7 @@ public class UserManager {
     }
 
     public void save(UserBeanVO user) {
-        if (user == null) throw new BizException("用户对象空！");
+        if (user == null) throw new BizException("用户对象不能为空！");
         if (user.getId() != null && user.getId() > 0) userService.updateByPrimaryKeySelective(user);
         else userService.insertSelective(user);
 

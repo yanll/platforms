@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -30,13 +31,29 @@ public class MenuController {
     @ResponseBody
     public JSON<PaginateWrapper<List<MenuBeanVO>>> list(Integer page, Integer limit) {
         PageBounds pageBounds = PaginationUtil.toPageBounds(page, limit, true);
+        menuManager.selectMapTreeMenus();
         return new JSON(BizCode.OK.getValue(), menuManager.getMenus(pageBounds));
+    }
+
+    @RequestMapping(value = "/map_tree", method = RequestMethod.GET, name = "查询树形菜单集合")
+    @ResponseBody
+    public JSON<List<Map<String, Object>>> map_tree() {
+        List<Map<String, Object>> list = menuManager.selectMapTreeMenus();
+        return new JSON(BizCode.OK.getValue(), list);
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST, name = "保存菜单")
     @ResponseBody
     public JSON save(@RequestBody MenuBeanVO menu) {
         menuManager.save(menu);
+        return new JSON(BizCode.OK.getValue());
+    }
+
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, name = "删除菜单")
+    @ResponseBody
+    public JSON delete(@PathVariable Long id) {
+        menuManager.delete(id);
         return new JSON(BizCode.OK.getValue());
     }
 

@@ -6,6 +6,7 @@ import com.yanll.business.auth.domain.MenuBean;
 import com.yanll.business.auth.domain.MenuBeanVO;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.data.mysql.service.BaseServiceImpl;
+import com.yanll.framework.util.TreeUtil;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.page.PaginateWrapper;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/11/17.
@@ -26,9 +28,15 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuBean, MenuBeanVO> imple
     MenuBeanMapper menuBeanMapper;
 
     @Override
-    public PaginateWrapper<List<MenuBeanVO>> selectMenus(Integer portal_id, PageBounds pageBounds) throws BizException {
+    public PaginateWrapper<List<MenuBeanVO>> selectMenus(Integer portal_id, PageBounds pageBounds) {
         List<MenuBean> list_ = menuBeanMapper.selectMenus(portal_id, pageBounds);
         PaginateWrapper<List<MenuBeanVO>> list = toPaginateWrapper(list_, pageBounds);
+        return list;
+    }
+
+    public List<Map<String, Object>> selectMapTreeMenus() {
+        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree();
+        List<Map<String, Object>> list = TreeUtil.buildMapTree(list_, "id", "parent_id");
         return list;
     }
 
