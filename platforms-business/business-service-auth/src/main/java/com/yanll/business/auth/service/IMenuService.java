@@ -13,9 +13,6 @@ import java.util.Map;
  * Created by Administrator on 2016/11/17.
  */
 public interface IMenuService extends BaseService<MenuBeanVO> {
-
-    public PaginateWrapper<List<MenuBeanVO>> selectMenus(Integer portal_id, PageBounds pageBounds) throws BizException;
-
     public List<Map<String, Object>> selectMapTreeMenus() throws BizException;
 
 }

@@ -11,7 +11,5 @@ import java.util.Map;
 
 @Mapper
 public interface MenuBeanMapper extends BaseMapper<MenuBean> {
-    public List<MenuBean> selectMenus(@Param("portal_id") Integer portal_id, PageBounds pageBounds);
-
     public List<Map<String, Object>> selectAllMapMenusForTree();
 }

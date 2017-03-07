@@ -27,14 +27,6 @@ public class MenuController {
     @Autowired
     MenuManager menuManager;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询菜单列表")
-    @ResponseBody
-    public JSON<PaginateWrapper<List<MenuBeanVO>>> list(Integer page, Integer limit) {
-        PageBounds pageBounds = PaginationUtil.toPageBounds(page, limit, true);
-        menuManager.selectMapTreeMenus();
-        return new JSON(BizCode.OK.getValue(), menuManager.getMenus(pageBounds));
-    }
-
     @RequestMapping(value = "/map_tree", method = RequestMethod.GET, name = "查询树形菜单集合")
     @ResponseBody
     public JSON<List<Map<String, Object>>> map_tree() {

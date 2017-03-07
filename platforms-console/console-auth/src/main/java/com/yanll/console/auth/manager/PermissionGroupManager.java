@@ -54,6 +54,5 @@ public class PermissionGroupManager {
         if (permissionGroupBeanVO == null) throw new BizException("权限组对象不能为空！");
         if (permissionGroupBeanVO.getId() == null) throw new BizException("主键不能为空！");
         permissionGroupService.updateByPrimaryKeySelective(permissionGroupBeanVO);
-
     }
 }
