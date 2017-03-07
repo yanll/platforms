@@ -1,6 +1,7 @@
 package com.yanll.console.auth.manager;
 
 import com.yanll.business.auth.domain.MenuBeanVO;
+import com.yanll.business.auth.domain.PermissionGroupBeanVO;
 import com.yanll.business.auth.service.IMenuService;
 import com.yanll.framework.util.enums.IEnum;
 import com.yanll.framework.util.exception.BizException;
@@ -39,6 +40,12 @@ public class MenuManager {
         MenuBeanVO vo = menuService.selectByPrimaryKey(id);
         if (vo == null || vo.getEnabled().intValue() == IEnum.YESNO.N.getValue().intValue()) return;
         menuService.deleteByPrimaryKey(id);
+    }
+
+
+    public MenuBeanVO detail(Long id) {
+        if (id == null) throw new BizException("主键不能为空！");
+        return menuService.selectByPrimaryKey(id);
     }
 
     public List<Map<String, Object>> selectMapTreeMenus() {

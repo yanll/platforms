@@ -36,7 +36,7 @@ public class PermissionGroupController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, name = "权限分组详情")
     @ResponseBody
-    public JSON<PermissionGroupBeanVO> update(@PathVariable Long id) {
+    public JSON<PermissionGroupBeanVO> get(@PathVariable Long id) {
         return new JSON(permissionGroupManager.detail(id));
     }
 

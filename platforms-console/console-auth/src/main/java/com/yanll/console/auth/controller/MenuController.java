@@ -3,6 +3,7 @@ package com.yanll.console.auth.controller;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.yanll.business.auth.domain.MenuBeanVO;
+import com.yanll.business.auth.domain.PermissionGroupBeanVO;
 import com.yanll.console.auth.manager.MenuManager;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.page.PaginateWrapper;
@@ -34,10 +35,23 @@ public class MenuController {
         return new JSON(BizCode.OK.getValue(), list);
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST, name = "保存菜单")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, name = "菜单详情")
+    @ResponseBody
+    public JSON<PermissionGroupBeanVO> get(@PathVariable Long id) {
+        return new JSON(menuManager.detail(id));
+    }
+
+    @RequestMapping(method = RequestMethod.POST, name = "保存菜单")
     @ResponseBody
     public JSON save(@RequestBody MenuBeanVO menu) {
         menuManager.save(menu);
+        return new JSON(BizCode.OK.getValue());
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, name = "更新菜单")
+    @ResponseBody
+    public JSON update(@RequestBody MenuBeanVO menu) {
+        menuManager.update(menu);
         return new JSON(BizCode.OK.getValue());
     }
 
