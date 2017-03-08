@@ -1,13 +1,17 @@
 package com.yanll.business.auth.service;
 
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.yanll.business.auth.dao.UserBeanMapper;
+import com.yanll.business.auth.domain.PermissionGroupBean;
+import com.yanll.business.auth.domain.PermissionGroupBeanVO;
 import com.yanll.business.auth.domain.UserBean;
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.framework.data.mysql.service.BaseServiceImpl;
 import com.yanll.framework.data.mysql.dao.BaseMapper;
 import com.yanll.framework.util.exception.BizCode;
 import com.yanll.framework.util.exception.BizException;
+import com.yanll.framework.util.page.PaginateWrapper;
 import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,11 +40,10 @@ public class UserServiceImpl extends BaseServiceImpl<UserBean, UserBeanVO> imple
     }
 
     @Override
-    public List<UserBeanVO> selectUsers(String username) {
-        RowBounds rowBounds = new RowBounds(0, 100);
-        List<UserBean> list = userBeanMapper.selectUsers(rowBounds);
-        //PageList
-        return toVOList(list);
+    public PaginateWrapper<List<UserBeanVO>> selectUsers(PageBounds pageBounds) {
+        List<UserBean> list_ = userBeanMapper.selectUsers(pageBounds);
+        PaginateWrapper<List<UserBeanVO>> list = toPaginateWrapper(list_, pageBounds);
+        return list;
     }
 
     @Override
