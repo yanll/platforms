@@ -27,11 +27,11 @@ public class PermissionGroupController {
     PermissionGroupManager permissionGroupManager;
 
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询权限分组列表")
+    @RequestMapping(value = "/list/{portal_id}", method = RequestMethod.GET, name = "查询权限分组列表")
     @ResponseBody
-    public JSON<PaginateWrapper<List<PermissionGroupBeanVO>>> list(Integer page, Integer limit) {
+    public JSON<PaginateWrapper<List<PermissionGroupBeanVO>>> list(@PathVariable Long portal_id, Integer page, Integer limit) {
         PageBounds pageBounds = PaginationUtil.toPageBounds(page, limit, true);
-        return new JSON(BizCode.OK.getValue(), permissionGroupManager.getPermissionGroups(pageBounds));
+        return new JSON(BizCode.OK.getValue(), permissionGroupManager.getPermissionGroups(portal_id, pageBounds));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, name = "权限分组详情")

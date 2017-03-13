@@ -23,11 +23,5 @@ public class PermissionController {
     @Autowired
     PermissionManager permissionManager;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, name = "查询权限列表")
-    @ResponseBody
-    public JSON list() {
-        return new JSON(BizCode.OK.getValue(), permissionManager.getPermissions());
-    }
-
 }
 

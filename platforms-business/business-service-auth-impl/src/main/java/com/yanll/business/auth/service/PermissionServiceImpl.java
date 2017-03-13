@@ -28,7 +28,7 @@ public class PermissionServiceImpl extends BaseServiceImpl<PermissionBean, Permi
     PermissionBeanMapper permissionBeanMapper;
 
     @Override
-    public List<PermissionBeanVO> selectPermissions(Integer portal_id) throws BizException {
+    public List<PermissionBeanVO> selectPermissions(Long portal_id) throws BizException {
         PageBounds pageBounds = new PageBounds(0, 100);
         List<PermissionBean> list = permissionBeanMapper.selectPermissions(portal_id, pageBounds);
         PageList<PermissionBean> list_ = (PageList<PermissionBean>) list;

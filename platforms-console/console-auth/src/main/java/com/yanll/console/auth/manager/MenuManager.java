@@ -48,7 +48,7 @@ public class MenuManager {
         return menuService.selectByPrimaryKey(id);
     }
 
-    public List<Map<String, Object>> selectMapTreeMenus() {
-        return menuService.selectMapTreeMenus();
+    public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) {
+        return menuService.selectMapTreeMenus(portal_id);
     }
 }

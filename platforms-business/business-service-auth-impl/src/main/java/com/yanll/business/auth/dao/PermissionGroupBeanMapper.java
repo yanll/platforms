@@ -10,6 +10,6 @@ import java.util.List;
 
 @Mapper
 public interface PermissionGroupBeanMapper extends BaseMapper<PermissionGroupBean> {
-    public List<PermissionGroupBean> selectPermissionGroups(@Param("portal_id") Integer portal_id, PageBounds pageBounds);
+    public List<PermissionGroupBean> selectPermissionGroups(@Param("portal_id") Long portal_id, PageBounds pageBounds);
 
 }

@@ -20,7 +20,7 @@ public class PermissionManager {
     IPermissionService permissionService;
 
 
-    public List<PermissionBeanVO> getPermissions() {
-        return permissionService.selectPermissions(IEnum.SYSTEM_PORTAL.AUTH_CONSOLE.getValue());
+    public List<PermissionBeanVO> getPermissions(Long portal_id) {
+        return permissionService.selectPermissions(portal_id);
     }
 }

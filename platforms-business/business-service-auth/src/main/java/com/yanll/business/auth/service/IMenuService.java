@@ -13,6 +13,6 @@ import java.util.Map;
  * Created by Administrator on 2016/11/17.
  */
 public interface IMenuService extends BaseService<MenuBeanVO> {
-    public List<Map<String, Object>> selectMapTreeMenus() throws BizException;
+    public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) throws BizException;
 
 }

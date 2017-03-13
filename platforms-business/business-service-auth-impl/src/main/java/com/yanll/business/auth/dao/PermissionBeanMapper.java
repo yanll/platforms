@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface PermissionBeanMapper extends BaseMapper<PermissionBean> {
 
-    public List<PermissionBean> selectPermissions(@Param("portal_id") Integer portal_id, PageBounds pageBounds);
+    public List<PermissionBean> selectPermissions(@Param("portal_id") Long portal_id, PageBounds pageBounds);
 
     public List<PermissionBean> selectGroupPermissions(@Param("group_id") Long group_id, PageBounds pageBounds);
 

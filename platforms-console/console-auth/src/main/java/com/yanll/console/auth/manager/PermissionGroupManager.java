@@ -5,6 +5,7 @@ import com.yanll.business.auth.domain.PermissionBeanVO;
 import com.yanll.business.auth.domain.PermissionGroupBeanVO;
 import com.yanll.business.auth.service.IPermissionGroupService;
 import com.yanll.business.auth.service.IPermissionService;
+import com.yanll.framework.util.enums.EnumUtil;
 import com.yanll.framework.util.enums.IEnum;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.page.PaginateWrapper;
@@ -27,8 +28,8 @@ public class PermissionGroupManager {
     IPermissionService permissionService;
 
 
-    public PaginateWrapper<List<PermissionGroupBeanVO>> getPermissionGroups(PageBounds pageBounds) {
-        return permissionGroupService.selectPermissionGroups(IEnum.SYSTEM_PORTAL.AUTH_CONSOLE.getValue(), pageBounds);
+    public PaginateWrapper<List<PermissionGroupBeanVO>> getPermissionGroups(Long portal_id, PageBounds pageBounds) {
+        return permissionGroupService.selectPermissionGroups(portal_id, pageBounds);
     }
 
     public PaginateWrapper<List<PermissionBeanVO>> getPermissions(Long group_id, PageBounds pageBounds) {
@@ -47,6 +48,8 @@ public class PermissionGroupManager {
 
     public void save(PermissionGroupBeanVO permissionGroupBeanVO) {
         if (permissionGroupBeanVO == null) throw new BizException("权限组对象不能为空！");
+        Integer portal_id = permissionGroupBeanVO.getPortalId();
+        if (!EnumUtil.exists(portal_id, IEnum.SYSTEM_PORTAL.class)) throw new BizException("Portal系统未知！");
         permissionGroupService.insertSelective(permissionGroupBeanVO);
     }
 

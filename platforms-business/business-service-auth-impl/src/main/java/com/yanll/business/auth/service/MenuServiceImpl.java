@@ -27,23 +27,9 @@ public class MenuServiceImpl extends BaseServiceImpl<MenuBean, MenuBeanVO> imple
     @Autowired
     MenuBeanMapper menuBeanMapper;
 
-    public List<Map<String, Object>> selectMapTreeMenus() {
-        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree();
-        List<Map<String, Object>> menu_list = new ArrayList<>();
-        IEnum.SYSTEM_PORTAL[] portals = IEnum.SYSTEM_PORTAL.values();
-        for (IEnum.SYSTEM_PORTAL portal : portals) {
-            Map<String, Object> map = new HashMap();
-            map.put("id", portal.getValue());
-            map.put("menu_name", portal.getDesc());
-            map.put("editable", IEnum.YESNO.N.getValue());
-            menu_list.add(map);
-            for (Map<String, Object> row : list_) {
-                if (row.get("portal_id") != null && row.get("portal_id").toString().equals(map.get("id").toString()))
-                    row.put("parent_id", map.get("id"));
-            }
-        }
-        menu_list.addAll(list_);
-        List<Map<String, Object>> list = TreeUtil.buildMapTree(menu_list, "id", "parent_id");
+    public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) {
+        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree(portal_id);
+        List<Map<String, Object>> list = TreeUtil.buildMapTree(list_, "id", "parent_id");
         return list;
     }
 

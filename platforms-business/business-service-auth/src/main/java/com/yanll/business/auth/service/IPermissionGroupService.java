@@ -14,6 +14,6 @@ import java.util.List;
  * Created by YANLL on 2016/11/17.
  */
 public interface IPermissionGroupService extends BaseService<PermissionGroupBeanVO> {
-    public PaginateWrapper<List<PermissionGroupBeanVO>> selectPermissionGroups(Integer portal_id, PageBounds pageBounds) throws BizException;
+    public PaginateWrapper<List<PermissionGroupBeanVO>> selectPermissionGroups(Long portal_id, PageBounds pageBounds) throws BizException;
 
 }

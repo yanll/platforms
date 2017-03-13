@@ -12,7 +12,7 @@ import java.util.List;
  * Created by YANLL on 2016/11/17.
  */
 public interface IPermissionService extends BaseService<PermissionBeanVO> {
-    public List<PermissionBeanVO> selectPermissions(Integer portal_id) throws BizException;
+    public List<PermissionBeanVO> selectPermissions(Long portal_id) throws BizException;
 
     public PaginateWrapper<List<PermissionBeanVO>> selectPermissions(Long group_id, PageBounds pageBounds) throws BizException;
 
