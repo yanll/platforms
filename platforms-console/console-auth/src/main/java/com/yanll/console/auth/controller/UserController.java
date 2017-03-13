@@ -68,5 +68,12 @@ public class UserController {
         return new JSON(BizCode.OK.getValue());
     }
 
+    @RequestMapping(value = "/resetpwd/{id}", method = RequestMethod.PUT, name = "更新用户")
+    @ResponseBody
+    public JSON resetpwd(@PathVariable Long id) {
+        userManager.updatePwd(id);
+        return new JSON(BizCode.OK.getValue());
+    }
+
 }
 

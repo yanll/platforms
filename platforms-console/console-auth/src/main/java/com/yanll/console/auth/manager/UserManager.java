@@ -84,6 +84,16 @@ public class UserManager {
         userService.updateByPrimaryKeySelective(user);
     }
 
+    public void updatePwd(Long id) {
+        if (id == null) throw new BizException("主键不能为空！");
+        UserBeanVO user = new UserBeanVO();
+        user.setId(id);
+        //默认密码
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(user.getUsername() + "_123456"));
+        userService.updateByPrimaryKeySelective(user);
+    }
+
     public UserBeanVO getUser(Long user_id) {
         return userService.selectByPrimaryKey(user_id);
     }
