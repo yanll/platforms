@@ -31,14 +31,14 @@ public class MenuManager {
         if (menu == null) throw new BizException("菜单对象不能为空！");
         if (menu.getId() == null) throw new BizException("主键不能为空！");
         MenuBeanVO vo = menuService.selectByPrimaryKey(menu.getId());
-        if (vo == null || vo.getEnabled().intValue() == IEnum.YESNO.N.getValue().intValue()) return;
+        if (vo == null) return;
         menuService.updateByPrimaryKeySelective(menu);
     }
 
     public void delete(Long id) {
         if (id == null) throw new BizException("主键不能为空！");
         MenuBeanVO vo = menuService.selectByPrimaryKey(id);
-        if (vo == null || vo.getEnabled().intValue() == IEnum.YESNO.N.getValue().intValue()) return;
+        if (vo == null) return;
         menuService.deleteByPrimaryKey(id);
     }
 
