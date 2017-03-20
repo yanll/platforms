@@ -20,13 +20,11 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "/menu")
-@Api("菜单管理")
 public class MenuController {
     private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired
     MenuManager menuManager;
 
-    @ApiOperation(value = "查询树形菜单集合", notes = "查询树形菜单集合...")
     @RequestMapping(value = "/tree/{portal_id}", method = RequestMethod.GET, name = "查询树形菜单集合")
     @ResponseBody
     public JSON<List<Map<String, Object>>> tree(@PathVariable Long portal_id) {
