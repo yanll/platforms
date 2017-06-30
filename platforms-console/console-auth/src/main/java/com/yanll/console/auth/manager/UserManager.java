@@ -1,9 +1,9 @@
 package com.yanll.console.auth.manager;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.h2finance.framework.util.enums.IEnum;
 import com.yanll.business.auth.domain.UserBeanVO;
 import com.yanll.business.auth.service.IUserService;
+import com.yanll.framework.util.enums.IEnum;
 import com.yanll.framework.util.exception.BizException;
 import com.yanll.framework.util.importor.ExcelImportHandler;
 import com.yanll.framework.util.jackson.UtilJackson;
