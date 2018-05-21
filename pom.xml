@@ -4,23 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yanll</groupId>
-    <artifactId>platforms</artifactId>
+    <artifactId>auth</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <parent>
-        <groupId>com.yanll</groupId>
-        <artifactId>frameworks</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../frameworks/pom.xml</relativePath>
-    </parent>
+    <properties>
+        <artifactId>${project.artifactId}</artifactId>
+    </properties>
 
     <modules>
-        <module>platforms-business</module>
-        <module>platforms-api</module>
-        <module>platforms-console</module>
+        <module>auth-service</module>
+        <module>auth-service-facade</module>
+        <module>auth-console</module>
+        <!--<module>auth-api</module>-->
+        <!--<module>auth-deploy</module>-->
     </modules>
-
 
     <profiles>
         <profile>
@@ -30,21 +28,36 @@
             </activation>
             <properties>
                 <profiles.active>dev</profiles.active>
-                <mysql.server>jdbc:mysql://172.21.1.205:3306</mysql.server>
-                <mysql.username>h2finance</mysql.username>
-                <mysql.password>h2financepay</mysql.password>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <profiles.active>test</profiles.active>
-                <mysql.server>jdbc:mysql://192.168.88.128:3306</mysql.server>
+                <mysql.server>jdbc:mysql://192.168.46.132:3306</mysql.server>
                 <mysql.username>root</mysql.username>
                 <mysql.password>root</mysql.password>
             </properties>
         </profile>
     </profiles>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showWarnings>true</showWarnings>
+                    <optimize>true</optimize>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.0.RELEASE</version>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
