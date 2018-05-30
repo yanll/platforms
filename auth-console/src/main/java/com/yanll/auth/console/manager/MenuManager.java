@@ -22,28 +22,28 @@ public class MenuManager {
 
     public void save(MenuBeanDTO menu) {
         if (menu == null) throw new BizException("菜单对象不能为空！");
-        menuService.insertSelective(menu);
+        //menuService.insertSelective(menu);
     }
 
     public void update(MenuBeanDTO menu) {
         if (menu == null) throw new BizException("菜单对象不能为空！");
         if (menu.getId() == null) throw new BizException("主键不能为空！");
-        MenuBeanDTO vo = menuService.selectByPrimaryKey(menu.getId());
-        if (vo == null) return;
-        menuService.updateByPrimaryKeySelective(menu);
+        //MenuBeanDTO vo = menuService.selectByPrimaryKey(menu.getId());
+        //if (vo == null) return;
+       // menuService.updateByPrimaryKeySelective(menu);
     }
 
     public void delete(Long id) {
         if (id == null) throw new BizException("主键不能为空！");
-        MenuBeanDTO vo = menuService.selectByPrimaryKey(id);
-        if (vo == null) return;
-        menuService.deleteByPrimaryKey(id);
+        //MenuBeanDTO vo = menuService.selectByPrimaryKey(id);
+      //  if (vo == null) return;
+        //menuService.deleteByPrimaryKey(id);
     }
 
 
     public MenuBeanDTO detail(Long id) {
         if (id == null) throw new BizException("主键不能为空！");
-        return menuService.selectByPrimaryKey(id);
+        return null;//menuService.selectByPrimaryKey(id);
     }
 
     public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) {

@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * Created by breez on 2016/03/30.
@@ -24,7 +25,7 @@ import org.springframework.context.annotation.ComponentScan;
         basePackageClasses = {/*ImportConfiguration.class,*/ ConsolePermissionCongfiguration.class}
 )
 @MapperScan(basePackages = "com.yanll.auth.service.dao")
-public class AuthApplication {
+public class AuthApplication extends WebMvcConfigurerAdapter {
 
 
     public static void main(String[] args) {

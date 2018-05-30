@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -73,6 +74,14 @@ public class UserController {
     public AjaxResult resetpwd(@PathVariable Long id) {
         userManager.updatePwd(id);
         return new AjaxResult(BizCode.OK.getValue());
+    }
+
+
+    @RequestMapping(value = "/navi/{portal_id}/{user_id}", method = RequestMethod.GET, name = "查询登陆用户导航")
+    @ResponseBody
+    public AjaxResult<List<Map<String, Object>>> navi(@PathVariable Long portal_id, @PathVariable Long user_id) {
+        List<Map<String, Object>> list = userManager.selectNaviTreeMenus(portal_id, user_id);
+        return new AjaxResult(BizCode.OK.getValue(), list);
     }
 
 }

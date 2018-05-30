@@ -38,24 +38,31 @@ public class PermissionGroupManager {
 
     public PermissionGroupBeanDTO detail(Long id) {
         if (id == null) throw new BizException("主键不能为空！");
-        return permissionGroupService.selectByPrimaryKey(id);
+        return null;//permissionGroupService.selectByPrimaryKey(id);
     }
 
     public void delete(Long id) {
         if (id == null) throw new BizException("主键不能为空！");
-        permissionGroupService.deleteByPrimaryKey(id);
+        //permissionGroupService.deleteByPrimaryKey(id);
     }
 
     public void save(PermissionGroupBeanDTO permissionGroupBeanVO) {
         if (permissionGroupBeanVO == null) throw new BizException("权限组对象不能为空！");
+        if (permissionGroupBeanVO.getGroupName() == null) throw new BizException("权限组名称不能为空！");
         Integer portal_id = permissionGroupBeanVO.getPortalId();
         if (!EnumUtil.exists(portal_id, IEnum.SYSTEM_PORTAL.class)) throw new BizException("Portal系统未知！");
-        permissionGroupService.insertSelective(permissionGroupBeanVO);
+        Integer count = permissionGroupService.selectCountByNameAndPortal(permissionGroupBeanVO.getPortalId().longValue(), permissionGroupBeanVO.getGroupName());
+        if (count > 0) {
+            throw new BizException("权限组名称已存在！");
+        }
+        //permissionGroupService.insertSelective(permissionGroupBeanVO);
     }
 
     public void update(PermissionGroupBeanDTO permissionGroupBeanVO) {
         if (permissionGroupBeanVO == null) throw new BizException("权限组对象不能为空！");
+        if (permissionGroupBeanVO.getGroupName() == null) throw new BizException("权限组名称不能为空！");
         if (permissionGroupBeanVO.getId() == null) throw new BizException("主键不能为空！");
-        permissionGroupService.updateByPrimaryKeySelective(permissionGroupBeanVO);
+        //permissionGroupService.updateByPrimaryKeySelective(permissionGroupBeanVO);
     }
 }
+

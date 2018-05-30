@@ -4,4 +4,11 @@
     <select id="selectAllMapMenusForTree" resultType="java.util.Map">
         select * from m_menu where enabled = 1 and portal_id = #{portal_id}
     </select>
+
+    <select id="selectMenusByIds" resultType="java.util.Map">
+        select * from m_menu where enabled = 1 and portal_id = #{portal_id} and id IN
+        <foreach collection="ids" item="id" separator="," open="(" close=")">#{id}</foreach>
+    </select>
+
+
 </mapper>

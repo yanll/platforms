@@ -15,4 +15,6 @@ public interface PermissionBeanMapper extends BaseMapper<PermissionBean> {
 
     public List<PermissionBean> selectGroupPermissions(@Param("group_id") Long group_id, PageBounds pageBounds);
 
+    public List<PermissionBean> selectPermissionsByUserId(@Param("user_id") Long user_id);
+
 }
