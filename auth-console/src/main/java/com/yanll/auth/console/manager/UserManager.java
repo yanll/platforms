@@ -9,7 +9,7 @@ import com.yanll.auth.service.service.IUserService;
 import com.yanll.framework.facade.exception.BizException;
 import com.yanll.framework.facade.page.PaginateWrapper;
 import com.yanll.framework.facade.page.Pagination;
-import com.yanll.framework.util.TreeUtil;
+import com.yanll.framework.util.UtilJackson;
 import com.yanll.framework.util.enums.IEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 //import com.yanll.framework.util.importor.ExcelImportHandler;
 
@@ -104,8 +102,82 @@ public class UserManager {
     }
 
 
+//    private List<Map<String, Object>> rebuildmenu(List<Map<String, Object>> list) {
+//        if(list==null||list.size()==0)return new ArrayList<>();
+//        Set<
+//        for(List<Map<String, Object> m:list){
+//
+//        }
+//        for (Map<String, Object> map : list) {
+//            if(map.get)
+//        }
+//        return null;
+//    }
+
+    public static final String CHILDREN = "children";
+    public static final String LEAF = "leaf";
+    public static final String CHECKED = "checked";
+    public static final String CHECKED_UPPER = "CHECKED";
+    public static final String CHECKBOX = "CHECKBOX";
+    public static final String NULL = "null";
+    public static final String NULLSTRING = "";
+
+    private static void recurseMapTree(List<Map<String, Object>> nodes) {
+        Iterator<Map<String, Object>> iterator = nodes.iterator();
+        while (iterator.hasNext()) {
+            Map<String, Object> m = iterator.next();
+            List<Map<String, Object>> children = (List<Map<String, Object>>) m.get(CHILDREN);
+            if (children == null || children.size() == 0) {
+                if (!m.get("menu_name").toString().equals("恒丰银行")) {
+                    System.out.println("remove " + m.get("menu_name"));
+                    iterator.remove();
+                }
+            } else {
+                recurseMapTree(children);
+                List<Map<String, Object>> children_ = (List<Map<String, Object>>) m.get(CHILDREN);
+                if (children_ == null || children.size() == 0) {
+                    if (!m.get("menu_name").toString().equals("恒丰银行")) {
+                        System.out.println("remove " + m.get("menu_name"));
+                        iterator.remove();
+                    }
+                }
+            }
+
+
+        }
+    }
+
+    public static List<Map<String, Object>> readMapTree(List<Map<String, Object>> nodes) {
+        List<Map<String, Object>> rs = new ArrayList<Map<String, Object>>();
+        if (nodes == null || nodes.size() == 0) return rs;
+        recurseMapTree(nodes);
+        return rs;
+    }
+
     public List<Map<String, Object>> selectNaviTreeMenus(Long portal_id, Long user_id) {
+        List<Map<String, Object>> allmenus = menuService.selectMapTreeMenus(portal_id);
+        if (allmenus == null || allmenus.size() == 0) return new ArrayList<>();
+
+        System.out.println(UtilJackson.writerWithDefaultPrettyPrinter(allmenus));
+        readMapTree(allmenus);
+        System.out.println(UtilJackson.writerWithDefaultPrettyPrinter(allmenus));
+        Map<String, Map<String, Object>> allmenusmap = new HashMap();
+        for (Map<String, Object> map : allmenus) {
+            allmenusmap.put(map.get("id").toString(), map);
+        }
         List<PermissionBeanDTO> permissions = permissionService.selectPermissionsByUserId(user_id);
+        if (permissions == null || permissions.size() == 0) return new ArrayList<>();
+        for (PermissionBeanDTO permissionBeanDTO : permissions) {
+            if (allmenusmap.containsKey(permissionBeanDTO.getMenuId().toString())) {
+                Map<String, Object> menumap = allmenusmap.get(permissionBeanDTO.getMenuId().toString());
+                menumap.put("has_operation", true);
+            }
+        }
+//        rebuildmenu(allmenus);
+
+
+        return null;
+        /*List<PermissionBeanDTO> permissions = permissionService.selectPermissionsByUserId(user_id);
         if (permissions == null || permissions.size() == 0) return null;
         List<Long> ids = new ArrayList<>();
         for (PermissionBeanDTO rec : permissions) {
@@ -116,7 +188,7 @@ public class UserManager {
         List<Map<String, Object>> menus = menuService.selectMapMenus(portal_id, ids);
         if (menus == null || menus.size() == 0) return null;
         List<Map<String, Object>> list = TreeUtil.buildMapTree(menus, "id", "parent_id");
-        return list;
+        return list;*/
     }
 
     public UserBeanDTO getUser(Long user_id) {

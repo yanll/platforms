@@ -1,6 +1,7 @@
 package com.yanll.auth.service.service;
 
 import com.yanll.auth.service.dao.MenuBeanMapper;
+import com.yanll.framework.facade.exception.BizException;
 import com.yanll.framework.util.TreeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,10 +24,16 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) {
-        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree(portal_id);
-        if (list_ == null || list_.size() == 0) return new ArrayList<>();
+        List<Map<String, Object>> list_ = selectAllMenus(portal_id);
         List<Map<String, Object>> list = TreeUtil.buildMapTree(list_, "id", "parent_id");
         return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectAllMenus(Long portal_id) throws BizException {
+        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree(portal_id);
+        if (list_ == null || list_.size() == 0) return new ArrayList<>();
+        return list_;
     }
 
     @Override

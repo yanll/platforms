@@ -15,5 +15,11 @@ public interface IPermissionGroupService {
 
     public Integer selectCountByNameAndPortal(Long portal_id, String group_name) throws BizException;
 
+    public Integer insertSelective(PermissionGroupBeanDTO permissionGroupBeanDTO) throws BizException;
+
+    public Integer updateByPrimaryKeySelective(PermissionGroupBeanDTO permissionGroupBeanDTO) throws BizException;
+
+    public Integer deleteByPrimaryKey(Long id) throws BizException;
+
 
 }

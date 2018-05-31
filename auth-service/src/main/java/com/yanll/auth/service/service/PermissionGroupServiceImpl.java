@@ -39,4 +39,23 @@ public class PermissionGroupServiceImpl implements IPermissionGroupService {
         return permissionGroupBeanMapper.selectCountByNameAndPortal(portal_id, group_name);
     }
 
+    @Override
+    public Integer insertSelective(PermissionGroupBeanDTO permissionGroupBeanDTO) throws BizException {
+        PermissionGroupBean permissionGroupBean = new PermissionGroupBean();
+        EntityConverter.toPO(permissionGroupBeanDTO, permissionGroupBean);
+        return permissionGroupBeanMapper.insertSelective(permissionGroupBean);
+    }
+
+    @Override
+    public Integer updateByPrimaryKeySelective(PermissionGroupBeanDTO permissionGroupBeanDTO) throws BizException {
+        PermissionGroupBean permissionGroupBean = new PermissionGroupBean();
+        EntityConverter.toPO(permissionGroupBeanDTO, permissionGroupBean);
+        return permissionGroupBeanMapper.updateByPrimaryKeySelective(permissionGroupBean);
+    }
+
+    @Override
+    public Integer deleteByPrimaryKey(Long id) throws BizException {
+        //todo-yll-fix 关联删除
+        return permissionGroupBeanMapper.deleteByPrimaryKey(id);
+    }
 }
