@@ -54,12 +54,11 @@ public class PermissionGroupController {
         return new AjaxResult(BizCode.OK.getValue());
     }
 
-//    @RequestMapping(value = "/permissions/{group_id}", method = RequestMethod.GET, name = "查询权限分组权限列表")
-//    @ResponseBody
-//    public AjaxResult<PaginateWrapper<List<PermissionGroupBeanDTO>>> permissions(@PathVariable Long group_id, Integer page, Integer limit) {
-//        Pagination pagination = PaginationUtil.toPageBounds(page, limit);
-//        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissions(group_id, 1L,pagination));
-//    }
+    @RequestMapping(value = "/permissions/{group_id}/{menu_id}", method = RequestMethod.GET, name = "查询权限分组权限列表")
+    @ResponseBody
+    public AjaxResult<PaginateWrapper<List<PermissionGroupBeanDTO>>> permissions(@PathVariable Long group_id, @PathVariable Long menu_id) {
+        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissions(group_id, menu_id));
+    }
 
 
 }

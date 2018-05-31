@@ -100,43 +100,20 @@ public class UserManager {
         //userService.updateByPrimaryKeySelective(user);
     }
 
-
-//    private List<Map<String, Object>> rebuildmenu(List<Map<String, Object>> list) {
-//        if(list==null||list.size()==0)return new ArrayList<>();
-//        Set<
-//        for(List<Map<String, Object> m:list){
-//
-//        }
-//        for (Map<String, Object> map : list) {
-//            if(map.get)
-//        }
-//        return null;
-//    }
-
-    public static final String CHILDREN = "children";
-    public static final String LEAF = "leaf";
-    public static final String CHECKED = "checked";
-    public static final String CHECKED_UPPER = "CHECKED";
-    public static final String CHECKBOX = "CHECKBOX";
-    public static final String NULL = "null";
-    public static final String NULLSTRING = "";
-
     private static void recurseMapTree(Set<Long> menuidset, List<Map<String, Object>> nodes) {
         Iterator<Map<String, Object>> iterator = nodes.iterator();
         while (iterator.hasNext()) {
             Map<String, Object> m = iterator.next();
-            List<Map<String, Object>> children = (List<Map<String, Object>>) m.get(CHILDREN);
+            List<Map<String, Object>> children = (List<Map<String, Object>>) m.get("children");
             if (children == null || children.size() == 0) {
-                if (!m.get("menu_name").toString().equals("恒丰银行")) {
-                    System.out.println("remove " + m.get("menu_name"));
+                if (!menuidset.contains(Long.parseLong(m.get("id").toString()))) {
                     iterator.remove();
                 }
             } else {
                 recurseMapTree(menuidset, children);
-                List<Map<String, Object>> children_ = (List<Map<String, Object>>) m.get(CHILDREN);
+                List<Map<String, Object>> children_ = (List<Map<String, Object>>) m.get("children");
                 if (children_ == null || children.size() == 0) {
-                    if (!m.get("menu_name").toString().equals("恒丰银行")) {
-                        System.out.println("remove " + m.get("menu_name"));
+                    if (!menuidset.contains(Long.parseLong(m.get("id").toString()))) {
                         iterator.remove();
                     }
                 }
@@ -155,7 +132,7 @@ public class UserManager {
         }
         List<Map<String, Object>> allmenus = menuService.selectMapTreeMenus(portal_id);
         if (allmenus == null || allmenus.size() == 0) return new ArrayList<>();
-        recurseMapTree(menuidset, allmenus);
+        //recurseMapTree(menuidset, allmenus);
         return allmenus;
     }
 

@@ -36,32 +36,8 @@ public class PermissionGroupManager {
         return permissionGroupService.selectPermissionGroups(portal_id, pagination);
     }
 
-    public List<Map<String, Object>> getPermissions(Long portal_id, Long group_id, Long user_id, Pagination pagination) {
+    public List<Map<String, Object>> getPermissions(Long group_id, Long menu_id) {
         return null;
-//        if (group_id == null) throw new BizException("权限组主键不能为空！");
-//        List<Map<String, Object>> allmenus = menuService.selectAllMenus(portal_id);
-//        if (allmenus == null || allmenus.size() == 0) return new ArrayList<>();
-//        Map<String, Map<String, Object>> allmenusmap = new HashMap();
-//        for (Map<String, Object> map : allmenus) {
-//            allmenusmap.put(map.get("id").toString(), map);
-//        }
-//        List<PermissionBeanDTO> permissions = permissionService.selectPermissionsByUserId(user_id);
-//        if (permissions == null || permissions.size() == 0) return new ArrayList<>();
-//
-//
-//        if (permissions == null || permissions.size() == 0) return null;
-//        List<Long> ids = new ArrayList<>();
-//        for (PermissionBeanDTO rec : permissions) {
-//            if (!ids.contains(rec.getMenuId())) {
-//                ids.add(rec.getMenuId());
-//            }
-//        }
-//        List<Map<String, Object>> menus = menuService.selectMapMenus(portal_id, ids);
-//        if (menus == null || menus.size() == 0) return null;
-//        List<Map<String, Object>> list = TreeUtil.buildMapTree(menus, "id", "parent_id");
-//        return list;
-//
-//        return permissionService.selectPermissions(group_id, pagination);
     }
 
     public void delete(Long id) {
