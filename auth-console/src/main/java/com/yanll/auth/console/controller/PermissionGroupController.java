@@ -54,10 +54,10 @@ public class PermissionGroupController {
         return new AjaxResult(BizCode.OK.getValue());
     }
 
-    @RequestMapping(value = "/permissions/{group_id}/{menu_id}", method = RequestMethod.GET, name = "查询权限分组权限列表")
+    @RequestMapping(value = "/permissions/{portal_id}/{group_id}", method = RequestMethod.GET, name = "查询权限分组树形权限列表")
     @ResponseBody
-    public AjaxResult<PaginateWrapper<List<PermissionGroupBeanDTO>>> permissions(@PathVariable Long group_id, @PathVariable Long menu_id) {
-        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissions(group_id, menu_id));
+    public AjaxResult<List<PermissionGroupBeanDTO>> permissions(@PathVariable Long portal_id, @PathVariable Long group_id) {
+        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissions(portal_id, group_id));
     }
 
 

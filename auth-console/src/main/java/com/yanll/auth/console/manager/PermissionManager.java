@@ -2,6 +2,8 @@ package com.yanll.auth.console.manager;
 
 import com.yanll.auth.service.domain.PermissionBeanDTO;
 import com.yanll.auth.service.service.IPermissionService;
+import com.yanll.framework.facade.page.PaginateWrapper;
+import com.yanll.framework.facade.page.Pagination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class PermissionManager {
     IPermissionService permissionService;
 
 
-    public List<PermissionBeanDTO> getPermissions(Long portal_id) {
-        return permissionService.selectPermissions(portal_id);
+    public PaginateWrapper<List<PermissionBeanDTO>> getPermissions(Long portal_id, Pagination pagination) {
+        return permissionService.selectPermissions(portal_id, pagination);
     }
 }

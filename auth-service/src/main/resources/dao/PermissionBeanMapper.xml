@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yanll.auth.service.dao.PermissionBeanMapper">
     <select id="selectPermissions" resultMap="BaseResultMap">
-        select * from m_permission where portal_id = #{portal_id} and enabled = 1
+        select m.menu_name,p.* from m_permission p
+        left join m_menu m on p.menu_id = m.id
+        where p.portal_id = #{portal_id} and p.enabled = 1 order by m.id
     </select>
     <select id="selectGroupPermissions" resultMap="BaseResultMap">
         select a.* from m_permission a where a.enabled = 1 and a.id in (

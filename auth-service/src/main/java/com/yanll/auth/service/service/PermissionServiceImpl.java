@@ -28,21 +28,17 @@ public class PermissionServiceImpl implements IPermissionService {
     PermissionBeanMapper permissionBeanMapper;
 
     @Override
-    public List<PermissionBeanDTO> selectPermissions(Long portal_id) throws BizException {
-        PageBounds pageBounds = new PageBounds(0, 100);
-        List<PermissionBean> list = permissionBeanMapper.selectPermissions(portal_id, pageBounds);
-        PageList<PermissionBean> list_ = (PageList<PermissionBean>) list;
-        System.out.println(UtilJackson.toJSON(list_));
-        System.out.println(UtilJackson.toJSON(list_.getPaginator()));
-        return null;//toDTOList(list);
+    public PaginateWrapper<List<PermissionBeanDTO>> selectPermissions(Long portal_id, Pagination pagination) throws BizException {
+        PageBounds pageBounds = new PageBounds(pagination.getPage(), pagination.getLimit());
+        List<PermissionBean> list_ = permissionBeanMapper.selectPermissions(portal_id, pageBounds);
+        PaginateWrapper<List<PermissionBeanDTO>> list = EntityConverter.toPaginateWrapper(list_, PermissionBeanDTO.class, pageBounds);
+        return list;
     }
 
     @Override
-    public PaginateWrapper<List<PermissionBeanDTO>> selectPermissions(Long group_id, Pagination pagination) {
-        PageBounds pageBounds = new PageBounds(pagination.getPage(), pagination.getLimit());
-        List<PermissionBean> list_ = permissionBeanMapper.selectGroupPermissions(group_id, pageBounds);
-        PaginateWrapper<List<PermissionBeanDTO>> list = null;//toPaginateWrapper(list_, pageBounds);
-        return list;
+    public List<PermissionBeanDTO> selectPermissions(Long group_id) {
+        List<PermissionBean> list = permissionBeanMapper.selectGroupPermissions(group_id);
+        return EntityConverter.toDTOList(list, PermissionBeanDTO.class);
     }
 
 
