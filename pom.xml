@@ -28,7 +28,7 @@
             </activation>
             <properties>
                 <profiles.active>dev</profiles.active>
-                <mysql.server>jdbc:mysql://192.168.46.133:3306</mysql.server>
+                <mysql.server>jdbc:mysql://192.168.46.134:3306</mysql.server>
                 <mysql.username>root</mysql.username>
                 <mysql.password>root</mysql.password>
             </properties>
