@@ -1,7 +1,6 @@
 package com.yanll.auth.console.controller;
 
 
-import com.yanll.auth.service.domain.UserBeanDTO;
 import com.yanll.auth.service.service.IAuthService;
 import com.yanll.auth.service.service.IUserService;
 import com.yanll.framework.auth.permission.annotation.ConsolePermission;
@@ -15,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
+import tk.techforge.patron.SecurityUtils;
+import tk.techforge.patron.Subject;
+import tk.techforge.patron.authentication.AuthenticationToken;
+import tk.techforge.patron.authentication.UsernamePasswordToken;
 
 
 /**
@@ -33,9 +33,10 @@ public class AuthController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST, name = "用户登录")
+    @RequestMapping(value = "/login", /*method = RequestMethod.POST, */name = "用户登录")
     @ResponseBody
     public AjaxResult login(HttpServletRequest request, String username, String password) {
+        /*
         UserBeanDTO vo = userService.selectUser(username, password);
         if (vo != null && vo.getId() != null) {
             Map<String, String> map = new HashMap();
@@ -44,6 +45,12 @@ public class AuthController {
             request.getSession().setAttribute("user_permission", map);
         }
         return new AjaxResult(BizCode.OK.getValue(), vo);
+        */
+
+        AuthenticationToken token = new UsernamePasswordToken(username, password.toCharArray());
+        Subject subject = SecurityUtils.getSubject();
+        subject.login(token);
+        return new AjaxResult(200, subject);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET, name = "注销登录")

@@ -27,11 +27,11 @@ public class PermissionController {
     PermissionManager permissionManager;
 
 
-    @RequestMapping(value = "/list/{portal_id}", method = RequestMethod.GET, name = "查询权限列表")
+    @RequestMapping(value = "/list/{system_code}", method = RequestMethod.GET, name = "查询权限列表")
     @ResponseBody
-    public AjaxResult<PaginateWrapper<List<PermissionBeanDTO>>> list(@PathVariable Long portal_id, Integer page, Integer limit) {
+    public AjaxResult<PaginateWrapper<List<PermissionBeanDTO>>> list(@PathVariable String system_code, Integer page, Integer limit) {
         Pagination pagination = PaginationUtil.toPageBounds(page, limit);
-        return new AjaxResult(BizCode.OK.getValue(), permissionManager.getPermissions(portal_id, pagination));
+        return new AjaxResult(BizCode.OK.getValue(), permissionManager.getPermissions(system_code, pagination));
     }
 
 }

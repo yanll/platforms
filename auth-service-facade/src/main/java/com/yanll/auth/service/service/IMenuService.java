@@ -9,10 +9,10 @@ import java.util.Map;
  * Created by Administrator on 2016/11/17.
  */
 public interface IMenuService {
-    public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) throws BizException;
+    public List<Map<String, Object>> selectMapTreeMenus(String system_code) throws BizException;
 
-    public List<Map<String, Object>> selectAllMenus(Long portal_id) throws BizException;
+    public List<Map<String, Object>> selectAllMenus(String system_code) throws BizException;
 
-    public List<Map<String, Object>> selectMapMenus(Long portal_id, List<Long> ids) throws BizException;
+    public List<Map<String, Object>> selectMapMenus(String system_code, List<Long> ids) throws BizException;
 
 }

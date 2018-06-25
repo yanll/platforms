@@ -23,10 +23,10 @@ public class MenuController {
     @Autowired
     MenuManager menuManager;
 
-    @RequestMapping(value = "/tree/{portal_id}", method = RequestMethod.GET, name = "查询树形菜单集合")
+    @RequestMapping(value = "/tree/{system_code}", method = RequestMethod.GET, name = "查询树形菜单集合")
     @ResponseBody
-    public AjaxResult<List<Map<String, Object>>> tree(@PathVariable Long portal_id) {
-        List<Map<String, Object>> list = menuManager.selectMapTreeMenus(portal_id);
+    public AjaxResult<List<Map<String, Object>>> tree(@PathVariable String system_code) {
+        List<Map<String, Object>> list = menuManager.selectMapTreeMenus(system_code);
         return new AjaxResult(BizCode.OK.getValue(), list);
     }
 

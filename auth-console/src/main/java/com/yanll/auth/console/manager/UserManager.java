@@ -123,14 +123,14 @@ public class UserManager {
         }
     }
 
-    public List<Map<String, Object>> selectNaviTreeMenus(Long portal_id, Long user_id) {
+    public List<Map<String, Object>> selectNaviTreeMenus(String system_code, Long user_id) {
         List<PermissionBeanDTO> permissions = permissionService.selectPermissionsByUserId(user_id);
         if (permissions == null || permissions.size() == 0) return new ArrayList<>();
         Set<Long> menuidset = new HashSet<>();
         for (PermissionBeanDTO permissionBeanDTO : permissions) {
             menuidset.add(permissionBeanDTO.getMenuId());
         }
-        List<Map<String, Object>> allmenus = menuService.selectMapTreeMenus(portal_id);
+        List<Map<String, Object>> allmenus = menuService.selectMapTreeMenus(system_code);
         if (allmenus == null || allmenus.size() == 0) return new ArrayList<>();
         //recurseMapTree(menuidset, allmenus);
         return allmenus;

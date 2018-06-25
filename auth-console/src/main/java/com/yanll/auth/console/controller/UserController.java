@@ -77,10 +77,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/navi/{portal_id}/{user_id}", method = RequestMethod.GET, name = "查询登陆用户导航")
+    @RequestMapping(value = "/navi/{system_code}/{user_id}", method = RequestMethod.GET, name = "查询登陆用户导航")
     @ResponseBody
-    public AjaxResult<List<Map<String, Object>>> navi(@PathVariable Long portal_id, @PathVariable Long user_id) {
-        List<Map<String, Object>> list = userManager.selectNaviTreeMenus(portal_id, user_id);
+    public AjaxResult<List<Map<String, Object>>> navi(@PathVariable String system_code, @PathVariable Long user_id) {
+        List<Map<String, Object>> list = userManager.selectNaviTreeMenus(system_code, user_id);
         return new AjaxResult(BizCode.OK.getValue(), list);
     }
 

@@ -4,18 +4,18 @@
     <select id="selectPermissions" resultMap="BaseResultMap">
         select m.menu_name,p.* from m_permission p
         left join m_menu m on p.menu_id = m.id
-        where p.portal_id = #{portal_id} and p.enabled = 1 order by m.id
+        where p.system_code = #{system_code} and p.enabled = 1 order by m.id
     </select>
     <select id="selectGroupPermissions" resultMap="BaseResultMap">
         select a.* from m_permission a where a.enabled = 1 and a.id in (
-          select b.permission_id from m_permission_group_rel b where b.group_id = #{group_id}
+          select b.permission_id from m_permission_group_rel b where b.role_id = #{role_id}
         )
     </select>
     <select id="selectPermissionsByUserId" resultMap="BaseResultMap">
         select * from m_permission where id in (
-          select permission_id from m_permission_group_rel where group_id in (
+          select permission_id from m_permission_group_rel where role_id in (
             select id from m_permission_group where id in (
-              select group_id from m_user_group_rel where user_id = #{user_id}
+              select role_id from m_user_group_rel where user_id = #{user_id}
             )
           )
         )

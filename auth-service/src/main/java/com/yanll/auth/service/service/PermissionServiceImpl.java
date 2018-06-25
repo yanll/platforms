@@ -28,16 +28,16 @@ public class PermissionServiceImpl implements IPermissionService {
     PermissionBeanMapper permissionBeanMapper;
 
     @Override
-    public PaginateWrapper<List<PermissionBeanDTO>> selectPermissions(Long portal_id, Pagination pagination) throws BizException {
+    public PaginateWrapper<List<PermissionBeanDTO>> selectPermissions(String system_code, Pagination pagination) throws BizException {
         PageBounds pageBounds = new PageBounds(pagination.getPage(), pagination.getLimit());
-        List<PermissionBean> list_ = permissionBeanMapper.selectPermissions(portal_id, pageBounds);
+        List<PermissionBean> list_ = permissionBeanMapper.selectPermissions(system_code, pageBounds);
         PaginateWrapper<List<PermissionBeanDTO>> list = EntityConverter.toPaginateWrapper(list_, PermissionBeanDTO.class, pageBounds);
         return list;
     }
 
     @Override
-    public List<PermissionBeanDTO> selectPermissions(Long group_id) {
-        List<PermissionBean> list = permissionBeanMapper.selectGroupPermissions(group_id);
+    public List<PermissionBeanDTO> selectPermissions(Long role_id) {
+        List<PermissionBean> list = permissionBeanMapper.selectGroupPermissions(role_id);
         return EntityConverter.toDTOList(list, PermissionBeanDTO.class);
     }
 

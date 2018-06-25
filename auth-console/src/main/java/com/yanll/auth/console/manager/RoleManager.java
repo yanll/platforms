@@ -2,8 +2,9 @@ package com.yanll.auth.console.manager;
 
 import com.yanll.auth.service.domain.PermissionBeanDTO;
 import com.yanll.auth.service.domain.PermissionGroupBeanDTO;
+import com.yanll.auth.service.domain.RoleBeanDTO;
 import com.yanll.auth.service.service.IMenuService;
-import com.yanll.auth.service.service.IPermissionGroupService;
+import com.yanll.auth.service.service.IRoleService;
 import com.yanll.auth.service.service.IPermissionService;
 import com.yanll.framework.facade.exception.BizException;
 import com.yanll.framework.facade.page.PaginateWrapper;
@@ -25,25 +26,25 @@ import java.util.Map;
  * Created by YANLL on 2016/12/7.
  */
 @Component
-public class PermissionGroupManager {
-    private static final Logger logger = LoggerFactory.getLogger(PermissionGroupManager.class);
+public class RoleManager {
+    private static final Logger logger = LoggerFactory.getLogger(RoleManager.class);
     @Autowired
-    IPermissionGroupService permissionGroupService;
+    IRoleService permissionGroupService;
     @Autowired
     IPermissionService permissionService;
     @Autowired
     IMenuService menuService;
 
 
-    public PaginateWrapper<List<PermissionGroupBeanDTO>> getPermissionGroups(Long portal_id, Pagination pagination) {
-        if (portal_id == null) throw new BizException("Portal主键不能为空！");
-        return permissionGroupService.selectPermissionGroups(portal_id, pagination);
+    public PaginateWrapper<List<RoleBeanDTO>> getRoles(String system_code, Pagination pagination) {
+        if (system_code == null) throw new BizException("Portal主键不能为空！");
+        return permissionGroupService.selectRoles(system_code, pagination);
     }
 
-    public List<Map<String, Object>> getPermissions(Long portal_id, Long group_id) {
-        List<Map<String, Object>> menus = menuService.selectAllMenus(portal_id);
+    public List<Map<String, Object>> getPermissions(String system_code, Long role_id) {
+        List<Map<String, Object>> menus = menuService.selectAllMenus(system_code);
         if (menus == null || menus.size() == 0) return new ArrayList<>();
-        List<PermissionBeanDTO> permissions = permissionService.selectPermissions(group_id);
+        List<PermissionBeanDTO> permissions = permissionService.selectPermissions(role_id);
         if (permissions == null || permissions.size() == 0) return new ArrayList<>();
         for (PermissionBeanDTO v : permissions) {
             Map<String, Object> rec = new HashMap<>();
@@ -62,12 +63,12 @@ public class PermissionGroupManager {
         permissionGroupService.deleteByPrimaryKey(id);
     }
 
-    public void save(PermissionGroupBeanDTO permissionGroupBeanVO) {
+    public void save(RoleBeanDTO permissionGroupBeanVO) {
         if (permissionGroupBeanVO == null) throw new BizException("权限组对象不能为空！");
         if (permissionGroupBeanVO.getGroupName() == null) throw new BizException("权限组名称不能为空！");
-        Integer portal_id = permissionGroupBeanVO.getPortalId();
-        if (!EnumUtil.exists(portal_id, IEnum.SYSTEM_PORTAL.class)) throw new BizException("Portal系统未知！");
-        Integer count = permissionGroupService.selectCountByNameAndPortal(permissionGroupBeanVO.getPortalId().longValue(), permissionGroupBeanVO.getGroupName());
+        String system_code = permissionGroupBeanVO.getSystemCode();
+        if (!EnumUtil.exists(system_code, IEnum.SYSTEM_PORTAL.class)) throw new BizException("Portal系统未知！");
+        Integer count = permissionGroupService.selectCountByNameAndSystem(permissionGroupBeanVO.getSystemCode(), permissionGroupBeanVO.getGroupName());
         if (count > 0) {
             throw new BizException("权限组名称已存在！");
         }

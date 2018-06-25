@@ -21,7 +21,7 @@ public class PermissionManager {
     IPermissionService permissionService;
 
 
-    public PaginateWrapper<List<PermissionBeanDTO>> getPermissions(Long portal_id, Pagination pagination) {
-        return permissionService.selectPermissions(portal_id, pagination);
+    public PaginateWrapper<List<PermissionBeanDTO>> getPermissions(String system_code, Pagination pagination) {
+        return permissionService.selectPermissions(system_code, pagination);
     }
 }

@@ -1,7 +1,7 @@
 package com.yanll.auth.service.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.yanll.auth.service.dao.PermissionGroupBeanMapper;
+import com.yanll.auth.service.dao.RoleBeanMapper;
 import com.yanll.auth.service.domain.PermissionGroupBean;
 import com.yanll.auth.service.domain.PermissionGroupBeanDTO;
 import com.yanll.framework.data.EntityConverter;
@@ -19,24 +19,24 @@ import java.util.List;
  * Created by Administrator on 2016/11/17.
  */
 @Service
-public class PermissionGroupServiceImpl implements IPermissionGroupService {
+public class PermissionGroupServiceImpl implements IRoleService {
 
     private static final Logger logger = LoggerFactory.getLogger(PermissionGroupServiceImpl.class);
     @Autowired
-    PermissionGroupBeanMapper permissionGroupBeanMapper;
+    RoleBeanMapper permissionGroupBeanMapper;
 
 
     @Override
-    public PaginateWrapper<List<PermissionGroupBeanDTO>> selectPermissionGroups(Long portal_id, Pagination pagination) throws BizException {
+    public PaginateWrapper<List<PermissionGroupBeanDTO>> selectPermissionGroups(String system_code, Pagination pagination) throws BizException {
         PageBounds pageBounds = new PageBounds(pagination.getPage(), pagination.getLimit());
-        List<PermissionGroupBean> list_ = permissionGroupBeanMapper.selectPermissionGroups(portal_id, pageBounds);
+        List<PermissionGroupBean> list_ = permissionGroupBeanMapper.selectPermissionGroups(system_code, pageBounds);
         PaginateWrapper<List<PermissionGroupBeanDTO>> paginateWrapper = EntityConverter.toPaginateWrapper(list_, PermissionGroupBeanDTO.class, pageBounds);
         return paginateWrapper;
     }
 
     @Override
-    public Integer selectCountByNameAndPortal(Long portal_id, String group_name) throws BizException {
-        return permissionGroupBeanMapper.selectCountByNameAndPortal(portal_id, group_name);
+    public Integer selectCountByNameAndPortal(String system_code, String group_name) throws BizException {
+        return permissionGroupBeanMapper.selectCountByNameAndPortal(system_code, group_name);
     }
 
     @Override

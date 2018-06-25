@@ -1,8 +1,9 @@
 package com.yanll.auth.console.controller;
 
 
-import com.yanll.auth.console.manager.PermissionGroupManager;
+import com.yanll.auth.console.manager.RoleManager;
 import com.yanll.auth.service.domain.PermissionGroupBeanDTO;
+import com.yanll.auth.service.domain.RoleBeanDTO;
 import com.yanll.framework.facade.domain.AjaxResult;
 import com.yanll.framework.facade.exception.BizCode;
 import com.yanll.framework.facade.page.PaginateWrapper;
@@ -24,13 +25,13 @@ import java.util.List;
 public class PermissionGroupController {
     private static final Logger logger = LoggerFactory.getLogger(PermissionGroupController.class);
     @Autowired
-    PermissionGroupManager permissionGroupManager;
+    RoleManager permissionGroupManager;
 
-    @RequestMapping(value = "/list/{portal_id}", method = RequestMethod.GET, name = "查询权限分组列表")
+    @RequestMapping(value = "/list/{system_code}", method = RequestMethod.GET, name = "查询权限分组列表")
     @ResponseBody
-    public AjaxResult<PaginateWrapper<List<PermissionGroupBeanDTO>>> list(@PathVariable Long portal_id, Integer page, Integer limit) {
+    public AjaxResult<PaginateWrapper<List<RoleBeanDTO>>> list(@PathVariable String system_code, Integer page, Integer limit) {
         Pagination pagination = PaginationUtil.toPageBounds(page, limit);
-        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissionGroups(portal_id, pagination));
+        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissionGroups(system_code, pagination));
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, name = "删除权限分组")
@@ -54,10 +55,10 @@ public class PermissionGroupController {
         return new AjaxResult(BizCode.OK.getValue());
     }
 
-    @RequestMapping(value = "/permissions/{portal_id}/{group_id}", method = RequestMethod.GET, name = "查询权限分组树形权限列表")
+    @RequestMapping(value = "/permissions/{system_code}/{role_id}", method = RequestMethod.GET, name = "查询权限分组树形权限列表")
     @ResponseBody
-    public AjaxResult<List<PermissionGroupBeanDTO>> permissions(@PathVariable Long portal_id, @PathVariable Long group_id) {
-        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissions(portal_id, group_id));
+    public AjaxResult<List<RoleBeanDTO>> permissions(@PathVariable String system_code, @PathVariable Long role_id) {
+        return new AjaxResult(BizCode.OK.getValue(), permissionGroupManager.getPermissions(system_code, role_id));
     }
 
 

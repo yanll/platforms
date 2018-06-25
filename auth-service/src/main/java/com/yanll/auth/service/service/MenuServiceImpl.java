@@ -23,22 +23,22 @@ public class MenuServiceImpl implements IMenuService {
     MenuBeanMapper menuBeanMapper;
 
     @Override
-    public List<Map<String, Object>> selectMapTreeMenus(Long portal_id) {
-        List<Map<String, Object>> list_ = selectAllMenus(portal_id);
+    public List<Map<String, Object>> selectMapTreeMenus(String system_code) {
+        List<Map<String, Object>> list_ = selectAllMenus(system_code);
         List<Map<String, Object>> list = TreeUtil.buildMapTree(list_, "id", "parent_id");
         return list;
     }
 
     @Override
-    public List<Map<String, Object>> selectAllMenus(Long portal_id) throws BizException {
-        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree(portal_id);
+    public List<Map<String, Object>> selectAllMenus(String system_code) throws BizException {
+        List<Map<String, Object>> list_ = menuBeanMapper.selectAllMapMenusForTree(system_code);
         if (list_ == null || list_.size() == 0) return new ArrayList<>();
         return list_;
     }
 
     @Override
-    public List<Map<String, Object>> selectMapMenus(Long portal_id, List<Long> ids) {
-        List<Map<String, Object>> list_ = menuBeanMapper.selectMenusByIds(portal_id, ids);
+    public List<Map<String, Object>> selectMapMenus(String system_code, List<Long> ids) {
+        List<Map<String, Object>> list_ = menuBeanMapper.selectMenusByIds(system_code, ids);
         if (list_ == null || list_.size() == 0) return new ArrayList<>();
         return list_;
     }
