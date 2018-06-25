@@ -15,13 +15,15 @@
         </plugin>
     </plugins>
     <mappers>
+        <mapper resource="dao/SystemBeanMapper.xml"/>
         <mapper resource="dao/MenuBeanMapper.xml"/>
         <mapper resource="dao/UserBeanMapper.xml"/>
         <mapper resource="dao/PermissionBeanMapper.xml"/>
-        <mapper resource="dao/PermissionGroupBeanMapper.xml"/>
+        <mapper resource="dao/RoleBeanMapper.xml"/>
+        <mapper resource="mapper/SystemBeanMapper.xml"/>
         <mapper resource="mapper/MenuBeanMapper.xml"/>
         <mapper resource="mapper/UserBeanMapper.xml"/>
         <mapper resource="mapper/PermissionBeanMapper.xml"/>
-        <mapper resource="mapper/PermissionGroupBeanMapper.xml"/>
+        <mapper resource="mapper/RoleBeanMapper.xml"/>
     </mappers>
 </configuration>

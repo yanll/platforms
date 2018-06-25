@@ -13,7 +13,7 @@
     </select>
     <select id="selectPermissionsByUserId" resultMap="BaseResultMap">
         select * from m_permission where id in (
-          select permission_id from m_permission_role_rel where role_id in (
+          select permission_id from m_role_permission_rel where role_id in (
             select id from m_role where id in (
               select role_id from m_user_role_rel where user_id = #{user_id}
             )

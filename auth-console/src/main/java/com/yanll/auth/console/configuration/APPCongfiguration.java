@@ -1,5 +1,6 @@
 package com.yanll.auth.console.configuration;
 
+import com.yanll.auth.console.SwaggerConfig;
 import com.yanll.auth.console.manager.AuthRealm;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tk.techforge.patron.DefaultSubject;
 import tk.techforge.patron.SecurityManager;
@@ -20,6 +22,7 @@ import tk.techforge.patron.interceptors.PatronInterceptor;
 @Configuration
 @ComponentScan(basePackages = {"com.yanll.framework.web", "com.yanll.auth.service"})
 @ComponentScan(basePackages = {"com.yanll.auth.console.manager", "com.yanll.auth.console.controller"})
+@ComponentScan(basePackageClasses = {SwaggerConfig.class})
 @MapperScan(basePackages = "com.yanll.auth.service.dao")
 public class APPCongfiguration implements WebMvcConfigurer {
     private static final Logger logger = LoggerFactory.getLogger(APPCongfiguration.class);
@@ -34,6 +37,10 @@ public class APPCongfiguration implements WebMvcConfigurer {
                 .allowedHeaders("*");
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -64,7 +71,7 @@ public class APPCongfiguration implements WebMvcConfigurer {
 
     @Bean
     public Subject defaultSubject() {
-        Subject subject = new DefaultSubject();
+        DefaultSubject subject = new DefaultSubject();
         subject.setSecurityManager(securityManager());
         return subject;
     }

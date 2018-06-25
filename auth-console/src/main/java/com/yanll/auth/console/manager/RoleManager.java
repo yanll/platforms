@@ -64,9 +64,9 @@ public class RoleManager {
 
     public void save(RoleBeanDTO roleBeanDTO) {
         if (roleBeanDTO == null) throw new BizException("角色对象不能为空！");
-        if (roleBeanDTO.getSystemCode() == null) throw new BizException("角色名称不能为空！");
+        if (roleBeanDTO.getRoleName() == null) throw new BizException("角色名称不能为空！");
         String system_code = roleBeanDTO.getSystemCode();
-        if (!EnumUtil.exists(system_code, IEnum.SYSTEM_PORTAL.class)) throw new BizException("Portal系统未知！");
+        if (!EnumUtil.exists(system_code, IEnum.SYSTEM_PORTAL.class)) throw new BizException("系统标识未知！");
         Integer count = roleService.selectCountByNameAndSystem(roleBeanDTO.getSystemCode(), roleBeanDTO.getRoleName());
         if (count > 0) {
             throw new BizException("角色名称已存在！");

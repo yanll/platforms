@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
-
     @RequestMapping(value = "/test")
     public String test() {
         return "SUCCESS!";

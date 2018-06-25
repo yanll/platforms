@@ -132,6 +132,7 @@ public class UserManager {
         }
         List<Map<String, Object>> allmenus = menuService.selectMapTreeMenus(system_code);
         if (allmenus == null || allmenus.size() == 0) return new ArrayList<>();
+        //recurseMapTree(menuidset, allmenus);
         return allmenus;
     }
 
