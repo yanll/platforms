@@ -35,7 +35,7 @@ public class UserController {
         return new AjaxResult(BizCode.OK.getValue(), userManager.getUsers(pagination));
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, name = "权限分组详情")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, name = "角色详情")
     @ResponseBody
     public AjaxResult<UserBeanDTO> get(@PathVariable Long id) {
         return new AjaxResult(userManager.getUser(id));
@@ -69,7 +69,7 @@ public class UserController {
         return new AjaxResult(BizCode.OK.getValue());
     }
 
-    @RequestMapping(value = "/resetpwd/{id}", method = RequestMethod.PUT, name = "更新用户")
+    @RequestMapping(value = "/resetpwd/{id}", method = RequestMethod.PUT, name = "重置用户密码")
     @ResponseBody
     public AjaxResult resetpwd(@PathVariable Long id) {
         userManager.updatePwd(id);

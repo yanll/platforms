@@ -13,11 +13,11 @@ import java.util.List;
 public interface IRoleService {
     public PaginateWrapper<List<RoleBeanDTO>> selectRoles(String system_code, Pagination pagination) throws BizException;
 
-    public Integer selectCountByNameAndSystem(String system_code, String group_name) throws BizException;
+    public Integer selectCountByNameAndSystem(String system_code, String role_name) throws BizException;
 
-    public Integer insertSelective(RoleBeanDTO permissionGroupBeanDTO) throws BizException;
+    public Integer insertSelective(RoleBeanDTO roleBeanDTO) throws BizException;
 
-    public Integer updateByPrimaryKeySelective(RoleBeanDTO permissionGroupBeanDTO) throws BizException;
+    public Integer updateByPrimaryKeySelective(RoleBeanDTO roleBeanDTO) throws BizException;
 
     public Integer deleteByPrimaryKey(Long id) throws BizException;
 

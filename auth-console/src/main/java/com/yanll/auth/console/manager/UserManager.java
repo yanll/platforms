@@ -66,7 +66,7 @@ public class UserManager {
 
     public void save(UserBeanDTO user) {
         if (user == null) throw new BizException("用户对象不能为空！");
-        if (user.getEnabled() == null) user.setEnabled(IEnum.YESNO.N.getValue());
+        if (user.getEnabled() == null) user.setEnabled(Integer.parseInt(IEnum.YESNO.N.getKey()));
         if (Strings.isNullOrEmpty(user.getUsername())) throw new BizException("用户名不能为空！");
         if (Strings.isNullOrEmpty(user.getNickname())) throw new BizException("昵称不能为空！");
         //默认密码
@@ -132,12 +132,12 @@ public class UserManager {
         }
         List<Map<String, Object>> allmenus = menuService.selectMapTreeMenus(system_code);
         if (allmenus == null || allmenus.size() == 0) return new ArrayList<>();
-        //recurseMapTree(menuidset, allmenus);
         return allmenus;
     }
 
     public UserBeanDTO getUser(Long user_id) {
-        return null;//userService.selectByPrimaryKey(user_id);
+        return null;
+        /*userService.selectByPrimaryKey(user_id);*/
     }
 
     public PaginateWrapper<List<UserBeanDTO>> getUsers(Pagination pagination) {

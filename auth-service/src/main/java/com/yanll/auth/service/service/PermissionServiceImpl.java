@@ -1,7 +1,6 @@
 package com.yanll.auth.service.service;
 
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
-import com.github.miemiedev.mybatis.paginator.domain.PageList;
 import com.yanll.auth.service.dao.PermissionBeanMapper;
 import com.yanll.auth.service.domain.PermissionBean;
 import com.yanll.auth.service.domain.PermissionBeanDTO;
@@ -9,7 +8,6 @@ import com.yanll.framework.data.EntityConverter;
 import com.yanll.framework.facade.exception.BizException;
 import com.yanll.framework.facade.page.PaginateWrapper;
 import com.yanll.framework.facade.page.Pagination;
-import com.yanll.framework.util.UtilJackson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +35,7 @@ public class PermissionServiceImpl implements IPermissionService {
 
     @Override
     public List<PermissionBeanDTO> selectPermissions(Long role_id) {
-        List<PermissionBean> list = permissionBeanMapper.selectGroupPermissions(role_id);
+        List<PermissionBean> list = permissionBeanMapper.selectRolePermissions(role_id);
         return EntityConverter.toDTOList(list, PermissionBeanDTO.class);
     }
 

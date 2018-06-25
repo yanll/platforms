@@ -1,7 +1,9 @@
 package com.yanll.auth.console.manager;
 
+import com.yanll.auth.service.domain.MenuBean;
 import com.yanll.auth.service.domain.MenuBeanDTO;
 import com.yanll.auth.service.service.IMenuService;
+import com.yanll.framework.data.EntityConverter;
 import com.yanll.framework.facade.exception.BizException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,24 +22,23 @@ public class MenuManager {
     @Autowired
     IMenuService menuService;
 
-    public void save(MenuBeanDTO menu) {
-        if (menu == null) throw new BizException("菜单对象不能为空！");
-        //menuService.insertSelective(menu);
+    public void save(MenuBeanDTO menuBeanDTO) {
+        if (menuBeanDTO == null) throw new BizException("菜单对象不能为空！");
+        MenuBean menuBean = new MenuBean();
+        EntityConverter.toPO(menuBeanDTO, menuBean);
+        /*menuService.insertSelective(menuBean);*/
     }
 
-    public void update(MenuBeanDTO menu) {
-        if (menu == null) throw new BizException("菜单对象不能为空！");
-        if (menu.getId() == null) throw new BizException("主键不能为空！");
-        //MenuBeanDTO vo = menuService.selectByPrimaryKey(menu.getId());
-        //if (vo == null) return;
-       // menuService.updateByPrimaryKeySelective(menu);
+    public void update(MenuBeanDTO menuBeanDTO) {
+        if (menuBeanDTO == null) throw new BizException("菜单对象不能为空！");
+        if (menuBeanDTO.getId() == null) throw new BizException("主键不能为空！");
+        MenuBean menuBean = new MenuBean();
+        EntityConverter.toPO(menuBeanDTO, menuBean);
+        /*menuService.updateByPrimaryKeySelective(menuBean);*/
     }
 
     public void delete(Long id) {
         if (id == null) throw new BizException("主键不能为空！");
-        //MenuBeanDTO vo = menuService.selectByPrimaryKey(id);
-      //  if (vo == null) return;
-        //menuService.deleteByPrimaryKey(id);
     }
 
 

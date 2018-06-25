@@ -34,9 +34,7 @@ public class UserServiceImpl implements IUserService {
         UserBean userBean = userBeanMapper.selectUser(username, password);
         if (userBean == null || userBean.getId() == null)
             throw new BizException(BizCode.LOGIN_FAILD.getValue(), BizCode.LOGIN_FAILD.getDesc());
-
-
-        return null;// toDTO(userBean);
+        return EntityConverter.toDTO(userBean, new UserBeanDTO());
     }
 
     @Override

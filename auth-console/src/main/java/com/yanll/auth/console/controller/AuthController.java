@@ -33,7 +33,7 @@ public class AuthController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value = "/login", /*method = RequestMethod.POST, */name = "用户登录")
+    @RequestMapping(value = "/login", method = RequestMethod.POST, name = "用户登录")
     @ResponseBody
     public AjaxResult login(HttpServletRequest request, String username, String password) {
         /*
