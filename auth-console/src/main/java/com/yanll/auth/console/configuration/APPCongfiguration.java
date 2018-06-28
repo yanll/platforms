@@ -12,12 +12,12 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import tk.techforge.patron.DefaultSubject;
 import tk.techforge.patron.SecurityManager;
-import tk.techforge.patron.Subject;
 import tk.techforge.patron.interceptors.DefaultRequestMappingInterceptor;
 import tk.techforge.patron.interceptors.DefaultResourceInterceptor;
 import tk.techforge.patron.interceptors.PatronInterceptor;
+import tk.techforge.patron.subject.DefaultSubjectFactory;
+import tk.techforge.patron.subject.SubjectFactory;
 
 @Configuration
 @ComponentScan(basePackages = {"com.yanll.framework.web", "com.yanll.auth.service"})
@@ -57,28 +57,27 @@ public class APPCongfiguration implements WebMvcConfigurer {
     @Bean
     public PatronInterceptor requestMappingPermissionInterceptor() {
         PatronInterceptor patronInterceptor = new DefaultRequestMappingInterceptor();
-        patronInterceptor.setSubject(defaultSubject());
+        patronInterceptor.setSecurityManager(securityManager());
         return patronInterceptor;
     }
 
     @Bean
     public PatronInterceptor defaultResourceInterceptor() {
         PatronInterceptor patronInterceptor = new DefaultResourceInterceptor();
-        patronInterceptor.setSubject(defaultSubject());
+        patronInterceptor.setSecurityManager(securityManager());
         return patronInterceptor;
     }
 
 
     @Bean
-    public Subject defaultSubject() {
-        DefaultSubject subject = new DefaultSubject();
-        subject.setSecurityManager(securityManager());
-        return subject;
-    }
-
-    @Bean
     public SecurityManager securityManager() {
         SecurityManager securityManager = new AuthRealm();
         return securityManager;
+    }
+
+    @Bean
+    public SubjectFactory subjectFactory() {
+        SubjectFactory factory = new DefaultSubjectFactory();
+        return factory;
     }
 }

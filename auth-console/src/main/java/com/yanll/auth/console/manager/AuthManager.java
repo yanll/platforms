@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tk.techforge.patron.SecurityUtils;
+import tk.techforge.patron.utils.SecurityUtils;
 import tk.techforge.patron.Subject;
 import tk.techforge.patron.auth.AuthToken;
 import tk.techforge.patron.auth.UsernamePasswordToken;

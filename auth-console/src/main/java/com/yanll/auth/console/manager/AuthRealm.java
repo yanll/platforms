@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.techforge.patron.AbstractSecurityManager;
+import tk.techforge.patron.DefaultSecurityManager;
 import tk.techforge.patron.auth.AuthInfo;
 import tk.techforge.patron.auth.AuthToken;
 import tk.techforge.patron.auth.SimpleAuthInfo;
@@ -20,11 +20,19 @@ import java.util.Collection;
 import java.util.List;
 
 @Service
-public class AuthRealm extends AbstractSecurityManager {
+public class AuthRealm extends DefaultSecurityManager {
     private static final Logger logger = LoggerFactory.getLogger(AuthRealm.class);
 
     @Autowired
     IUserService userService;
+
+    static {
+        logger.info("AuthRealm static init");
+    }
+
+    public AuthRealm() {
+        logger.info("AuthRealm New Instance");
+    }
 
     @Override
     protected AuthInfo doGetAuthentication(AuthToken token) throws AuthException {
