@@ -16,8 +16,8 @@ import tk.techforge.patron.SecurityManager;
 import tk.techforge.patron.interceptors.DefaultRequestMappingInterceptor;
 import tk.techforge.patron.interceptors.DefaultResourceInterceptor;
 import tk.techforge.patron.interceptors.PatronInterceptor;
-import tk.techforge.patron.subject.DefaultSubjectFactory;
-import tk.techforge.patron.subject.SubjectFactory;
+//import tk.techforge.patron.subject.DefaultSubjectFactory;
+//import tk.techforge.patron.subject.SubjectFactory;
 
 @Configuration
 @ComponentScan(basePackages = {"com.yanll.framework.web", "com.yanll.auth.service"})
@@ -57,14 +57,14 @@ public class APPCongfiguration implements WebMvcConfigurer {
     @Bean
     public PatronInterceptor requestMappingPermissionInterceptor() {
         PatronInterceptor patronInterceptor = new DefaultRequestMappingInterceptor();
-        patronInterceptor.setSecurityManager(securityManager());
+//        patronInterceptor.setSecurityManager(securityManager());
         return patronInterceptor;
     }
 
     @Bean
     public PatronInterceptor defaultResourceInterceptor() {
         PatronInterceptor patronInterceptor = new DefaultResourceInterceptor();
-        patronInterceptor.setSecurityManager(securityManager());
+//        patronInterceptor.setSecurityManager(securityManager());
         return patronInterceptor;
     }
 
@@ -75,9 +75,9 @@ public class APPCongfiguration implements WebMvcConfigurer {
         return securityManager;
     }
 
-    @Bean
-    public SubjectFactory subjectFactory() {
-        SubjectFactory factory = new DefaultSubjectFactory();
-        return factory;
-    }
+//    @Bean
+//    public SubjectFactory subjectFactory() {
+//        SubjectFactory factory = new DefaultSubjectFactory();
+//        return factory;
+//    }
 }

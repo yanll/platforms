@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tk.techforge.patron.utils.SecurityUtils;
-import tk.techforge.patron.Subject;
+import tk.techforge.patron.subject.Subject;
 import tk.techforge.patron.auth.AuthToken;
 import tk.techforge.patron.auth.UsernamePasswordToken;
 
@@ -25,7 +25,7 @@ public class AuthManager {
         AuthToken token = new UsernamePasswordToken(username, password.toCharArray());
         Subject subject = SecurityUtils.getSubject();
         subject.login(token);
-        UserBeanDTO userBeanDTO = (UserBeanDTO) subject.getAuthInfo().getPrincipal();
+        UserBeanDTO userBeanDTO = null;//(UserBeanDTO) subject.getAuthInfo().getPrincipal();
         return userBeanDTO;
     }
 }
