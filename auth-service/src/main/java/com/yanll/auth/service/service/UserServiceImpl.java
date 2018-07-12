@@ -6,7 +6,6 @@ import com.yanll.auth.service.dao.UserBeanMapper;
 import com.yanll.auth.service.domain.UserBean;
 import com.yanll.auth.service.domain.UserBeanDTO;
 import com.yanll.framework.data.EntityConverter;
-import com.yanll.framework.facade.exception.BizCode;
 import com.yanll.framework.facade.exception.BizException;
 import com.yanll.framework.facade.page.PaginateWrapper;
 import com.yanll.framework.facade.page.Pagination;
@@ -32,8 +31,9 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserBeanDTO selectUser(String username, String password) {
         UserBean userBean = userBeanMapper.selectUser(username, password);
-        if (userBean == null || userBean.getId() == null)
-            throw new BizException(BizCode.LOGIN_FAILD.getValue(), BizCode.LOGIN_FAILD.getDesc());
+        if (userBean == null) {
+            throw new BizException("账户信息不存在！");
+        }
         return EntityConverter.toDTO(userBean, new UserBeanDTO());
     }
 
