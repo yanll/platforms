@@ -26,6 +26,7 @@
             <artifactId>frameworks-web</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>com.yanll.frameworks</groupId>
             <artifactId>frameworks-data</artifactId>

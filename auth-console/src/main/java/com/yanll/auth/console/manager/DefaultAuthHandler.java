@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import tk.techforge.mock.RedisMock;
+import tk.techforge.mock.localcahce.LocalCache;
 import tk.techforge.patron.AuthHandler;
 import tk.techforge.patron.auth.AuthToken;
 import tk.techforge.patron.exceptions.AuthException;
@@ -35,7 +35,7 @@ public class DefaultAuthHandler implements AuthHandler<UserBeanDTO, PermissionBe
                 subject.setId(userBeanDTO.getId());
                 subject.setPrincipal(userBeanDTO);
                 subject.setAuthenticated(true);
-                RedisMock.set(subject.getId().toString(), subject);
+                LocalCache.put(subject.getId().toString(), subject, 1000 * 60 * 5);
             }
             logger.error("authentication not exists:" + authToken.toString());
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class DefaultAuthHandler implements AuthHandler<UserBeanDTO, PermissionBe
     @Override
     public void logout(Subject<UserBeanDTO, PermissionBeanDTO> subject) throws AuthException {
         if (subject == null) return;
-        RedisMock.remove(subject.getId().toString());
+        LocalCache.remove(subject.getId().toString());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DefaultAuthHandler implements AuthHandler<UserBeanDTO, PermissionBe
 
     @Override
     public Subject<UserBeanDTO, PermissionBeanDTO> getAuthenticatedSubject() {
-        Object o = RedisMock.get("10001");
+        Object o = LocalCache.get("10001");
         if (o != null) return (Subject<UserBeanDTO, PermissionBeanDTO>) o;
         return null;
     }
