@@ -57,7 +57,7 @@ public class AuthController {
             userBeanDTO = subject.getPrincipal();
         } catch (AuthException e) {
             logger.error(user.getUsername() + ":" + e.getMessage(), e);
-            return new AjaxResult<UserBeanDTO>(HttpStatus.FORBIDDEN.value(), "认证失败！");
+            return new AjaxResult<UserBeanDTO>(HttpStatus.INTERNAL_SERVER_ERROR.value(), "认证失败！");
         }
         return new AjaxResult<UserBeanDTO>(HttpStatus.OK.value(), userBeanDTO);
     }
@@ -66,7 +66,7 @@ public class AuthController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET, name = "注销登录")
     public AjaxResult logout(HttpServletRequest request) {
         authManager.logout();
-        return new AjaxResult<UserBeanDTO>(HttpStatus.FORBIDDEN.value());
+        return new AjaxResult<UserBeanDTO>(HttpStatus.OK.value());
     }
 
 
