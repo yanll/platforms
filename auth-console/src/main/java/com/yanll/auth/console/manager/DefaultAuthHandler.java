@@ -39,7 +39,8 @@ public class DefaultAuthHandler implements AuthHandler<UserBeanDTO, PermissionBe
             }
             logger.error("authentication not exists:" + authToken.toString());
         } catch (Exception e) {
-            throw new AuthException("authenticate error:" + authToken.toString() + "," + e.getMessage());
+            logger.error("认证异常：" + authToken.toString(), e);
+            throw new AuthException("认证异常:" + authToken.toString());
         } finally {
             authToken.clear();
         }
